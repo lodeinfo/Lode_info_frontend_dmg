@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CopyOutlined, CheckOutlined } from "@ant-design/icons";
-import "../styles/UserMessage.css";
+import "../Styles/UserMessage.css";
 
 const UserMessage = ({ content }) => {
     const [hovered, setHovered] = useState(false);
