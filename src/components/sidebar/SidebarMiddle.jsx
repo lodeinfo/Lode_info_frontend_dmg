@@ -8,13 +8,17 @@ function SidebarMiddle({
     searchResults,
     threads,
     selectedThread,
-    setSelectedThread
+    setSelectedThread,
+    currentTheme
 }) {
     return (
         <div className="recent-chats-scroll">
             {!collapsed && (
                 <>
-                    <div className="gemini-section-title">Recent Chats</div>
+                    <div className="sidebar-divider-sticky"></div>
+                    <div className="gemini-section-title">
+                        {currentTheme === "dark" ? "RECENT CHATS" : "YOUR CHATS"}
+                    </div>
                     <div>
                         {(isSearching && searchQuery ? searchResults : threads).map((thread) => (
                             <div

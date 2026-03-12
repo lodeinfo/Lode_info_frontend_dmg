@@ -52,7 +52,7 @@ function SidebarTop({
             </div>
 
             <div
-                className={`gemini-menu-item menu-item-base ${collapsed ? 'menu-item-collapsed' : 'menu-item-expanded'} ${currentTheme === 'dark' ? 'menu-item-bg-dark' : 'menu-item-bg-light'}`}
+                className={`gemini-menu-item menu-item-base ${collapsed ? 'menu-item-collapsed' : 'menu-item-expanded'} new-chat-btn-dark`}
                 onClick={() => {
                     setSelectedThread(null);
                     setSelectedTopic(null);
@@ -63,7 +63,7 @@ function SidebarTop({
             </div>
 
             <div
-                className={`gemini-menu-item menu-item-base ${collapsed ? 'menu-item-collapsed' : 'menu-item-expanded'} ${currentTheme === 'dark' ? 'menu-item-bg-dark' : 'menu-item-bg-light'}`}
+                className={`gemini-menu-item menu-item-base ${collapsed ? 'menu-item-collapsed' : 'menu-item-expanded'}`}
                 onClick={() => {
                     if (isSearching) {
                         setIsSearching(false);
@@ -108,7 +108,7 @@ function SidebarTop({
             </div>
 
             <div
-                className={`gemini-menu-item menu-item-base ${collapsed ? 'menu-item-collapsed menu-item-topics-collapsed' : 'menu-item-expanded menu-item-topics-expanded'} ${currentTheme === 'dark' ? 'menu-item-bg-dark' : 'menu-item-bg-light'}`}
+                className={`gemini-menu-item menu-item-base ${collapsed ? 'menu-item-collapsed menu-item-topics-collapsed' : 'menu-item-expanded menu-item-topics-expanded'}`}
                 onClick={() => setTopicModalTrigger(prev => prev + 1)}
             >
                 <FolderAddOutlined className="menu-item-icon" />

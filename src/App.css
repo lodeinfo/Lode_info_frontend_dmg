@@ -1,17 +1,17 @@
 /* Google Fonts import if possible, otherwise rely on system fonts that look similar */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap');
 
 /* Light Theme Variables */
 [data-theme="light"] {
-    --bg-primary: #f0f4f9;
-    --bg-sidebar: #f0f4f9;
-    --bg-sidebar-active: #dce3e9;
-    --bg-content: #ffffff;
-    --bg-input: #f0f4f9;
+    --bg-primary: #f5f2eb;
+    --bg-sidebar: transparent;
+    --bg-sidebar-active: rgba(0, 0, 0, 0.05);
+    --bg-content: transparent;
+    --bg-input: #ffffff;
     --bg-input-focus: #ffffff;
-    --bg-hover: #dce3e9;
-    --bg-active: #c2e7ff;
-    --bg-sources: #f0f4f9;
+    --bg-hover: rgba(0, 0, 0, 0.04);
+    --bg-active: rgba(0, 0, 0, 0.08);
+    --bg-sources: rgba(0, 0, 0, 0.03);
     --text-primary: #1f1f1f;
     --text-secondary: #444746;
     --text-tertiary: #5f6368;
@@ -23,21 +23,31 @@
     --radius-lg: 24px;
     --radius-md: 12px;
     --radius-sm: 8px;
+
+    /* Component Variables */
+    --user-bubble-bg: #e7edf5;
+    --ai-card-bg: #ffffff;
+    --sidebar-divider-color: rgba(0, 0, 0, 0.05);
+    --sidebar-hover-bg: #1f1f1f;
+    --sidebar-hover-text: #ffffff;
+    --sidebar-active-bg: #ffffff;
+    --sidebar-active-text: #1f1f1f;
+    --welcome-color: #1f1f1f;
 }
 
 /* Dark Theme Variables */
 [data-theme="dark"] {
-    --bg-primary: #131314;
-    --bg-sidebar: #1e1e1e;
-    --bg-sidebar-active: #2d2d2d;
-    --bg-content: #2f2f2f;
-    --bg-input: #3b3b3b;
-    --bg-input-focus: #404040;
-    --bg-hover: #404040;
+    --bg-primary: #1f1f1f;
+    --bg-sidebar: #2f2f2f;
+    --bg-sidebar-active: #3b3b3b;
+    --bg-content: #1f1f1f;
+    --bg-input: #2f2f2f;
+    --bg-input-focus: #353535;
+    --bg-hover: #3b3b3b;
     --bg-active: #1e3a5f;
-    --bg-sources: #3b3b3b;
-    --text-primary: #e3e3e3;
-    --text-secondary: #b4b4b4;
+    --bg-sources: #2f2f2f;
+    --text-primary: #ffffff;
+    --text-secondary: #e3e3e3;
     --text-tertiary: #8e8e8e;
     --text-active: #c2e7ff;
     --accent-blue: #8ab4f8;
@@ -47,6 +57,16 @@
     --radius-lg: 24px;
     --radius-md: 12px;
     --radius-sm: 8px;
+
+    /* Component Variables */
+    --user-bubble-bg: #3b3b3b;
+    --ai-card-bg: #2a2a2a;
+    --sidebar-divider-color: transparent;
+    --sidebar-hover-bg: var(--bg-sidebar-active);
+    --sidebar-hover-text: var(--text-primary);
+    --sidebar-active-bg: var(--bg-sidebar-active);
+    --sidebar-active-text: var(--text-primary);
+    --welcome-color: #ffffff;
 }
 
 body {
@@ -72,13 +92,12 @@ textarea {
 
 /* Sidebar Styling */
 .gemini-sider {
-    background: var(--bg-content);
+    background: transparent !important;
     border-right: none !important;
     overflow-x: hidden !important;
     margin: 12px 0 12px 12px !important;
     border-radius: 24px !important;
     height: calc(100vh - 24px) !important;
-    /* box-shadow: 0 4px 12px var(--shadow-medium); */
 }
 
 .gemini-logo {
@@ -96,33 +115,62 @@ textarea {
 .gemini-menu-item {
     margin: 4px 12px;
     padding: 10px 16px;
-    border-radius: var(--radius-lg);
+    border-radius: 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--text-primary);
-    transition: background 0.2s;
+    color: var(--text-secondary);
+    transition: all 0.2s;
     font-weight: 500;
     font-size: 14px;
+    background-color: transparent !important;
+    border: 1px solid transparent;
 }
 
-.gemini-menu-item:hover {
-    background-color: var(--bg-sidebar-active);
+.gemini-menu-item:hover,
+.gemini-menu-item:hover .menu-item-icon,
+.gemini-menu-item:hover .menu-item-text {
+    background-color: var(--sidebar-hover-bg) !important;
+    color: var(--sidebar-hover-text) !important;
 }
 
 .gemini-menu-item.active {
-    background-color: var(--bg-active);
-    color: var(--text-active);
+    background-color: var(--sidebar-active-bg) !important;
+    color: var(--sidebar-active-text) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.new-chat-btn-dark {
+    border: none !important;
+    margin-bottom: 8px !important;
+}
+
+.user-profile-section {
+    border-top: 1px solid var(--sidebar-divider-color);
+    padding-top: 12px;
+    margin-top: auto;
 }
 
 .gemini-section-title {
-    padding: 16px 24px 8px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text-secondary);
+    padding: 12px 28px 8px;
+    /* Adjusted padding since divider is separate */
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
+    opacity: 0.5;
+}
+
+.sidebar-divider-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    height: 1px;
+    background-color: var(--sidebar-divider-color);
+    margin: 12px 0 0 0;
+    width: 100%;
 }
 
 /* Main Layout */
@@ -161,7 +209,7 @@ textarea {
 }
 
 .chat-bubble-user {
-    background-color: var(--bg-input);
+    background-color: var(--user-bubble-bg);
     color: var(--text-primary);
     padding: 12px 24px;
     border-radius: 28px;
@@ -209,12 +257,12 @@ textarea {
 }
 
 .chat-card-ai {
-    background: var(--bg-content);
-    border: 1px solid var(--border-color);
+    background: var(--ai-card-bg) !important;
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 20px;
     padding: 24px;
     width: 100%;
-    box-shadow: 0 1px 3px var(--shadow-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
     transition: box-shadow 0.2s;
 }
 
@@ -294,21 +342,20 @@ textarea {
 }
 
 .welcome-line-1 {
-    font-size: 32px;
+    font-size: 28px;
     font-style: italic;
     font-family: 'Playfair Display', serif;
-    /* Or similar cursive/italic font */
     color: var(--text-tertiary);
-    margin-bottom: 8px;
-    opacity: 0.8;
+    margin-bottom: 2px;
+    opacity: 0.9;
 }
 
 .welcome-line-2 {
-    font-size: 44px;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.2;
-    letter-spacing: -0.5px;
+    font-size: 48px;
+    font-weight: 500;
+    color: var(--welcome-color);
+    line-height: 1.1;
+    letter-spacing: -1px;
 }
 
 [data-theme="dark"] .welcome-line-1 {

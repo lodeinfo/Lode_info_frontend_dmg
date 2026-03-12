@@ -1,0 +1,409 @@
+/* ============================================
+   QuickInput.css — Styles for QuickInput.jsx
+   ============================================ */
+
+/* ── Context Bar (Talking About) ── */
+.qi-context-bar {
+    padding: 8px 16px;
+    background: rgba(33, 150, 243, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 12px;
+    color: #2196f3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin: -16px -16px 12px -16px;
+    border-radius: 14px 14px 0 0;
+}
+
+.qi-context-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qi-context-bar-globe {
+    font-size: 14px;
+}
+
+.qi-context-bar-title-text {
+    letter-spacing: 0.3px;
+}
+
+.qi-context-bar-title-bold {
+    color: #fff;
+}
+
+.qi-context-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+/* ── Topic Dropdown Wrapper ── */
+.qi-topic-dropdown-wrapper {
+    position: relative;
+}
+
+/* ── Topic Button ── */
+.qi-topic-btn {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    height: 30px;
+    padding: 0 12px 0 14px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qi-topic-btn.open {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.qi-topic-btn-arrow {
+    font-size: 10px;
+    opacity: 0.7;
+    margin-left: 2px;
+}
+
+/* ── Topic Dropdown Panel ── */
+.qi-topic-dropdown {
+    position: absolute;
+    top: 36px;
+    right: 0;
+    width: 240px;
+    background: #302f2fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.qi-topic-search-box {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.qi-topic-search-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+}
+
+.qi-topic-list {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.qi-topic-section-label {
+    padding: 10px 14px 4px 14px;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.qi-topic-empty {
+    padding: 12px 14px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 12px;
+}
+
+.qi-topic-item {
+    padding: 9px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.85);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    transition: background 0.15s;
+}
+
+.qi-topic-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.qi-topic-item.selected {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.qi-topic-item-inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+}
+
+.qi-topic-item-icon {
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+.qi-topic-item-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.qi-topic-create-tag {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 1px 6px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.qi-topic-custom-create {
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #fff;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.qi-topic-custom-create:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.qi-topic-custom-create-no-border {
+    border-top: none;
+}
+
+/* ── Ask Anything Button ── */
+.qi-ask-anything-btn {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    height: 30px;
+    padding: 0 14px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ── Chat Scroll ── */
+.qi-chat-scroll-wrapper {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* ── Translation Overlay ── */
+.qi-translate-overlay-outer {
+    max-width: 830px;
+    margin: 0 auto 16px auto;
+    width: 100%;
+    padding: 0 16px;
+}
+
+.qi-translate-overlay-card {
+    background: #2f2f2f;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.qi-translate-lang-header {
+    margin-bottom: 16px;
+}
+
+.qi-translate-lang-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 8px;
+    margin-left: 4px;
+}
+
+.qi-translate-lang-select {
+    width: 100%;
+    background: #3b3b3b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: #fff;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+}
+
+.qi-translate-lang-select option {
+    background: #3b3b3b;
+    color: #fff;
+}
+
+.qi-translate-textarea-wrapper {
+    height: 80px;
+}
+
+.qi-translate-textarea {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: none;
+    border-radius: 12px;
+    padding: 14px;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+}
+
+.qi-translate-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.qi-translate-cancel-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0 8px;
+}
+
+.qi-translate-send-btn {
+    background: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 24px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.qi-translate-send-btn:hover {
+    background: #42a5f5;
+}
+
+/* ── Dividers ── */
+.qi-divider-wrapper {
+    max-width: 830px;
+    margin: 12px auto 0 auto;
+    width: 100%;
+    padding: 0 16px;
+}
+
+.qi-divider-wrapper-bottom {
+    max-width: 830px;
+    margin: 4px auto 12px auto;
+    width: 100%;
+    padding: 0 16px;
+}
+
+.qi-divider-line {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.qi-divider-line-mb {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin-bottom: 20px;
+}
+
+/* ── Vertical Action Menu ── */
+.qi-actions-outer {
+    max-width: 830px;
+    margin: 8px auto;
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.qi-action-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+}
+
+.qi-action-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.qi-action-icon {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.qi-action-arrow {
+    margin-left: auto;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Recent Chats ── */
+.qi-recent-scroll {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.qi-top-divider-wrapper {
+    max-width: 830px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 16px;
+}
+
+.qi-recent-chats-wrapper {
+    max-width: 830px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 16px;
+}
+
+.qi-section-title-mb {
+    margin-bottom: 12px;
+    padding-left: 0;
+}
+
+.qi-thread-item-nudge {
+    margin-left: -4px;
+}
+
+/* ── Input Bottom ── */
+.qi-input-bottom {
+    margin-top: 12px;
+}

@@ -229,7 +229,8 @@ function MainLayout() {
                 theme={{
                     token: {
                         fontFamily: "'Outfit', 'Inter', sans-serif",
-                        colorPrimary: currentTheme === "dark" ? "#8ab4f8" : "#1a73e8",
+                        colorPrimary: currentTheme === "dark" ? "#8ab4f8" : "#2f2f2f",
+                        colorBgContainer: "transparent",
                     },
                     algorithm: currentTheme === "dark"
                         ? antTheme.darkAlgorithm

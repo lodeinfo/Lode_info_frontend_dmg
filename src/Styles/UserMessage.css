@@ -1,0 +1,30 @@
+/* UserMessage.css */
+
+.user-message-container {
+    position: relative;
+}
+
+.user-message-copy-btn {
+    position: absolute;
+    bottom: -28px;
+    right: 0;
+    background: rgba(40, 40, 40, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 3px 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    z-index: 10;
+    transition: color 0.2s;
+}
+
+.user-message-copy-btn.copied {
+    color: #4caf50;
+}
+
+.user-message-copy-btn.not-copied {
+    color: rgba(255, 255, 255, 0.6);
+}

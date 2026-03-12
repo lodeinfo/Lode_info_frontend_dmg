@@ -8,14 +8,15 @@
 .input-bar-container {
     display: flex;
     flex-direction: column;
-    padding: 16px;
-    border-radius: 28px !important;
+    padding: 16px 24px;
+    border-radius: 32px !important;
     gap: 8px;
     height: auto;
     min-height: fit-content;
     position: relative;
-    background: var(--bg-secondary);
-    /* Ensure background stays consistent */
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .input-textarea {
@@ -72,8 +73,10 @@
 
 .input-disclaimer {
     text-align: center;
-    font-size: 12px;
-    margin-top: 8px;
+    font-size: 11px;
+    margin-top: 12px;
+    color: var(--text-tertiary);
+    opacity: 0.7;
 }
 
 /* Chat Interface Main Container */

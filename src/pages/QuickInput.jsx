@@ -7,6 +7,7 @@ import MessageList from "../components/MessageList";
 import useShortcuts from "../hooks/useShortcuts";
 import { useAuth } from "../contexts/AuthContext";
 import TopicModal from "../components/TopicModal"; // Added TopicModal
+import "../Styles/QuickInput.css";
 
 const API_BASE_URL = "http://localhost:8000/api";
 
@@ -477,50 +478,24 @@ export default function QuickInput() {
             />
 
             {intent === "contextual" && capturedContext && (
-                <div style={{
-                    padding: "8px 16px",
-                    background: "rgba(33, 150, 243, 0.08)",
-                    borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
-                    fontSize: "12px",
-                    color: "#2196f3",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between", // ✅ Align buttons to right
-                    gap: "10px",
-                    margin: "-16px -16px 12px -16px", // Flush with window Edges
-                    borderRadius: "14px 14px 0 0"
-                }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                        <span style={{ fontSize: "14px" }}>🌐</span>
-                        <span style={{ letterSpacing: "0.3px" }}>Talking about: <b style={{ color: "#fff" }}>{capturedContext.title}</b></span>
+                <div className="qi-context-bar">
+                    <div className="qi-context-bar-left">
+                        <span className="qi-context-bar-globe">🌐</span>
+                        <span className="qi-context-bar-title-text">Talking about: <b className="qi-context-bar-title-bold">{capturedContext.title}</b></span>
                     </div>
 
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px", marginLeft: "auto" }}>
+                    <div className="qi-context-bar-right">
                         {/* ✅ Smart Topic Dropdown Button */}
-                        <div ref={topicDropdownRef} style={{ position: "relative" }}>
+                        <div ref={topicDropdownRef} className="qi-topic-dropdown-wrapper">
                             <button
                                 onClick={() => {
                                     setTopicDropdownOpen(prev => !prev);
                                     setTopicInputValue("");
                                 }}
-                                style={{
-                                    border: "1px solid rgba(255, 255, 255, 0.2)",
-                                    background: topicDropdownOpen ? "rgba(255,255,255,0.18)" : "rgba(255, 255, 255, 0.1)",
-                                    color: "#fff",
-                                    height: "30px",
-                                    padding: "0 12px 0 14px",
-                                    borderRadius: "15px",
-                                    fontSize: "13px",
-                                    fontWeight: "600",
-                                    cursor: "pointer",
-                                    transition: "all 0.15s ease",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    gap: "6px"
-                                }}
+                                className={`qi-topic-btn${topicDropdownOpen ? " open" : ""}`}
                             >
                                 {selectedTopic ? selectedTopic.name : "Topics"}
-                                <span style={{ fontSize: "10px", opacity: 0.7, marginLeft: "2px" }}>▾</span>
+                                <span className="qi-topic-btn-arrow">▾</span>
                             </button>
 
                             {topicDropdownOpen && (() => {
@@ -563,50 +538,28 @@ export default function QuickInput() {
                                 const canCreateCustom = searchLower.trim().length > 0 && !exactMatch;
 
                                 return (
-                                    <div
-                                        style={{
-                                            position: "absolute",
-                                            top: "36px",
-                                            right: 0,
-                                            width: "240px",
-                                            background: "#302f2fff", // ✅ Original sidebar UI color
-                                            border: "1px solid rgba(255,255,255,0.1)",
-                                            borderRadius: "12px",
-                                            boxShadow: "0 8px 32px rgba(0,0,0,0.6)",
-                                            zIndex: 9999,
-                                            overflow: "hidden"
-                                        }}
-                                    >
+                                    <div className="qi-topic-dropdown">
                                         {/* Search input */}
-                                        <div style={{ padding: "8px 10px", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+                                        <div className="qi-topic-search-box">
                                             <input
                                                 autoFocus
                                                 placeholder="Search or create topic..."
                                                 value={topicInputValue}
                                                 onChange={e => setTopicInputValue(e.target.value)}
-                                                style={{
-                                                    width: "100%",
-                                                    background: "rgba(255,255,255,0.04)",
-                                                    border: "1px solid rgba(255,255,255,0.08)",
-                                                    borderRadius: "8px",
-                                                    padding: "6px 10px",
-                                                    color: "#fff",
-                                                    fontSize: "13px",
-                                                    outline: "none"
-                                                }}
+                                                className="qi-topic-search-input"
                                             />
                                         </div>
 
                                         {/* Topic list */}
-                                        <div style={{ maxHeight: "250px", overflowY: "auto" }}>
+                                        <div className="qi-topic-list">
                                             {!searchLower && autoSuggestedItems.length > 0 && (
-                                                <div style={{ padding: "10px 14px 4px 14px", fontSize: "11px", color: "rgba(255,255,255,0.3)", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                                                <div className="qi-topic-section-label">
                                                     Page Suggestions
                                                 </div>
                                             )}
 
                                             {combined.length === 0 && !canCreateCustom && (
-                                                <div style={{ padding: "12px 14px", color: "rgba(255,255,255,0.4)", fontSize: "12px" }}>
+                                                <div className="qi-topic-empty">
                                                     No topics found
                                                 </div>
                                             )}
@@ -629,31 +582,18 @@ export default function QuickInput() {
                                                             }
                                                             setTopicDropdownOpen(false);
                                                         }}
-                                                        style={{
-                                                            padding: "9px 14px",
-                                                            cursor: "pointer",
-                                                            fontSize: "13px",
-                                                            color: isSelected ? "#fff" : "rgba(255,255,255,0.85)",
-                                                            background: isSelected ? "rgba(255,255,255,0.08)" : "transparent",
-                                                            display: "flex",
-                                                            alignItems: "center",
-                                                            justifyContent: "space-between",
-                                                            gap: "8px",
-                                                            transition: "background 0.15s"
-                                                        }}
-                                                        onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.05)"}
-                                                        onMouseLeave={e => e.currentTarget.style.background = isSelected ? "rgba(255,255,255,0.08)" : "transparent"}
+                                                        className={`qi-topic-item${isSelected ? " selected" : ""}`}
                                                     >
-                                                        <div style={{ display: "flex", alignItems: "center", gap: "8px", overflow: "hidden" }}>
-                                                            <span style={{ fontSize: "12px", opacity: 0.5 }}>
+                                                        <div className="qi-topic-item-inner">
+                                                            <span className="qi-topic-item-icon">
                                                                 {item.type === "suggestion" ? "🌐" : "●"}
                                                             </span>
-                                                            <span style={{ whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                                            <span className="qi-topic-item-name">
                                                                 {item.name}
                                                             </span>
                                                         </div>
                                                         {item.isNew && (
-                                                            <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)", background: "rgba(255,255,255,0.08)", padding: "1px 6px", borderRadius: "10px", border: "1px solid rgba(255,255,255,0.1)" }}>
+                                                            <span className="qi-topic-create-tag">
                                                                 Create
                                                             </span>
                                                         )}
@@ -669,19 +609,7 @@ export default function QuickInput() {
                                                         if (created) setSelectedTopic(created);
                                                         setTopicDropdownOpen(false);
                                                     }}
-                                                    style={{
-                                                        padding: "10px 14px",
-                                                        cursor: "pointer",
-                                                        fontSize: "13px",
-                                                        color: "#fff",
-                                                        borderTop: combined.length > 0 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                                                        display: "flex",
-                                                        alignItems: "center",
-                                                        gap: "8px",
-                                                        background: "rgba(255,255,255,0.03)"
-                                                    }}
-                                                    onMouseEnter={e => e.currentTarget.style.background = "rgba(255,255,255,0.08)"}
-                                                    onMouseLeave={e => e.currentTarget.style.background = "rgba(255,255,255,0.03)"}
+                                                    className={`qi-topic-custom-create${combined.length === 0 ? " qi-topic-custom-create-no-border" : ""}`}
                                                 >
                                                     <span>+</span>
                                                     Create "{topicInputValue.trim()}"
@@ -694,24 +622,7 @@ export default function QuickInput() {
                         </div>
 
                         {/* ✅ SHIFTED → Ask Anything button moved here */}
-                        <button
-                            onClick={focusInput}
-                            style={{
-                                border: "1px solid rgba(255, 255, 255, 0.2)",
-                                background: "rgba(255, 255, 255, 0.1)",
-                                color: "#fff",
-                                height: "30px",
-                                padding: "0 14px",
-                                borderRadius: "15px",
-                                fontSize: "13px",
-                                fontWeight: "600",
-                                cursor: "pointer",
-                                transition: "all 0.15s ease",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "6px"
-                            }}
-                        >
+                        <button onClick={focusInput} className="qi-ask-anything-btn">
                             <span>☀</span>
                             Ask Anything
                         </button>
@@ -721,7 +632,7 @@ export default function QuickInput() {
 
             {/* Active Chat (Messages) - Above InputBar */}
             {!isChatEmpty && (
-                <div className="quick-chat-scroll" style={{ flex: 1, overflowY: "auto" }}>
+                <div className="quick-chat-scroll qi-chat-scroll-wrapper">
                     <MessageList
                         ref={messagesEndRef}
                         conversation={conversation}
@@ -734,87 +645,47 @@ export default function QuickInput() {
 
             {/* ✅ NEW → Simplified Translation UI */}
             {translateOverlayOpen && (
-                <div style={{
-                    maxWidth: "830px",
-                    margin: "0 auto 16px auto",
-                    width: "100%",
-                    padding: "0 16px"
-                }}>
-                    <div style={{
-                        background: "#2f2f2f",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        borderRadius: "16px",
-                        padding: "16px",
-                        boxShadow: "0 4px 20px rgba(0,0,0,0.3)"
-                    }}>
+                <div className="qi-translate-overlay-outer">
+                    <div className="qi-translate-overlay-card">
                         {/* Header: Target Language Selector Only */}
-                        <div style={{ marginBottom: "16px" }}>
-                            <div style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", marginBottom: "8px", marginLeft: "4px" }}>
+                        <div className="qi-translate-lang-header">
+                            <div className="qi-translate-lang-label">
                                 Translate to:
                             </div>
                             <select
                                 value={translateTargetLang}
                                 onChange={e => setTranslateTargetLang(e.target.value)}
-                                style={{
-                                    width: "100%",
-                                    background: "#3b3b3b",
-                                    border: "1px solid rgba(255,255,255,0.1)",
-                                    borderRadius: "8px",
-                                    padding: "10px 12px",
-                                    color: "#fff",
-                                    fontSize: "13px",
-                                    outline: "none",
-                                    cursor: "pointer"
-                                }}
+                                className="qi-translate-lang-select"
                             >
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="English">English</option>
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="Spanish">Spanish</option>
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="French">French</option>
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="German">German</option>
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="Chinese">Chinese</option>
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="Japanese">Japanese</option>
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="Hindi">Hindi</option>
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="Gujarati">Gujarati</option>
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="Russian">Russian</option>
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="Portuguese">Portuguese</option>
-                                <option style={{ background: "#3b3b3b", color: "#fff" }} value="Arabic">Arabic</option>
+                                <option value="English">English</option>
+                                <option value="Spanish">Spanish</option>
+                                <option value="French">French</option>
+                                <option value="German">German</option>
+                                <option value="Chinese">Chinese</option>
+                                <option value="Japanese">Japanese</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Gujarati">Gujarati</option>
+                                <option value="Russian">Russian</option>
+                                <option value="Portuguese">Portuguese</option>
+                                <option value="Arabic">Arabic</option>
                             </select>
                         </div>
 
                         {/* Content: Single Text Area */}
-                        <div style={{ height: "140px" }}>
+                        <div className="qi-translate-textarea-wrapper">
                             <textarea
                                 placeholder="Enter text or select a topic..."
                                 value={translateSourceText}
                                 onChange={e => setTranslateSourceText(e.target.value)}
-                                style={{
-                                    width: "100%",
-                                    height: "100%",
-                                    background: "rgba(255,255,255,0.03)",
-                                    border: "none",
-                                    borderRadius: "12px",
-                                    padding: "14px",
-                                    color: "#fff",
-                                    fontSize: "14px",
-                                    lineHeight: "1.6",
-                                    resize: "none",
-                                    outline: "none"
-                                }}
+                                className="qi-translate-textarea"
                             />
                         </div>
 
                         {/* Actions: Send & Close */}
-                        <div style={{ display: "flex", justifyContent: "flex-end", gap: "12px", marginTop: "16px" }}>
+                        <div className="qi-translate-actions">
                             <button
                                 onClick={() => setTranslateOverlayOpen(false)}
-                                style={{
-                                    background: "transparent",
-                                    border: "none",
-                                    color: "rgba(255,255,255,0.4)",
-                                    fontSize: "13px",
-                                    cursor: "pointer",
-                                    padding: "0 8px"
-                                }}
+                                className="qi-translate-cancel-btn"
                             >
                                 Cancel
                             </button>
@@ -825,19 +696,7 @@ export default function QuickInput() {
                                     handleAsk(`Translate the following text to ${translateTargetLang} (auto-detect source language):\n\n${translateSourceText}`);
                                     setTranslateOverlayOpen(false);
                                 }}
-                                style={{
-                                    background: "#2196f3",
-                                    color: "#fff",
-                                    border: "none",
-                                    borderRadius: "20px",
-                                    padding: "8px 24px",
-                                    fontSize: "13px",
-                                    fontWeight: "600",
-                                    cursor: "pointer",
-                                    transition: "all 0.2s"
-                                }}
-                                onMouseEnter={e => e.currentTarget.style.background = "#42a5f5"}
-                                onMouseLeave={e => e.currentTarget.style.background = "#2196f3"}
+                                className="qi-translate-send-btn"
                             >
                                 Translate & Send
                             </button>
@@ -846,7 +705,7 @@ export default function QuickInput() {
                 </div>
             )}
 
-            <div className="quick-input-bottom" style={{ marginTop: 12, marginBottom: isChatEmpty ? 0 : 0 }}>
+            <div className="quick-input-bottom qi-input-bottom">
                 <InputBar
                     inputRef={inputRef}
                     question={question}
@@ -863,124 +722,61 @@ export default function QuickInput() {
 
             {/* Divider After InputBox (Only in empty contextual state) */}
             {isChatEmpty && intent === "contextual" && (
-                <div style={{ maxWidth: "830px", margin: "12px auto 0 auto", width: "100%", padding: "0 16px" }}>
-                    <div style={{ height: "1px", background: "rgba(255, 255, 255, 0.08)" }} />
+                <div className="qi-divider-wrapper">
+                    <div className="qi-divider-line" />
                 </div>
             )}
 
             {/* Vertical Action Menu */}
             {intent === "contextual" && isChatEmpty && (
-                <div
-                    className="quick-vertical-actions"
-                    style={{
-                        maxWidth: "830px",
-                        margin: "8px auto",
-                        width: "100%",
-                        padding: "0 16px",
-                        display: "flex",
-                        flexDirection: "column",
-                        gap: "2px"
-                    }}
-                >
+                <div className="quick-vertical-actions qi-actions-outer">
                     <div
                         onClick={() => applyContextAction("summarize")}
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "12px",
-                            padding: "10px 12px",
-                            borderRadius: "8px",
-                            cursor: "pointer",
-                            transition: "background 0.2s",
-                            color: "rgba(255, 255, 255, 0.85)",
-                            fontSize: "14px"
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)"}
-                        onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
+                        className="qi-action-item"
                     >
-                        <CompressOutlined style={{ fontSize: "16px", color: "rgba(255, 255, 255, 0.45)" }} />
+                        <CompressOutlined className="qi-action-icon" />
                         <span>Summarize</span>
                     </div>
 
-                    <div
-                        onClick={() => applyContextAction("takeaways")}
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "12px",
-                            padding: "10px 12px",
-                            borderRadius: "8px",
-                            cursor: "pointer",
-                            transition: "background 0.2s",
-                            color: "rgba(255, 255, 255, 0.85)",
-                            fontSize: "14px"
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)"}
-                        onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
-                    >
-                        <UnorderedListOutlined style={{ fontSize: "16px", color: "rgba(255, 255, 255, 0.45)" }} />
+                    <div onClick={() => applyContextAction("takeaways")} className="qi-action-item">
+                        <UnorderedListOutlined className="qi-action-icon" />
                         <span>Get key takeaways</span>
                     </div>
 
-
-                    <div
-                        onClick={() => applyContextAction("translate")}
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: "12px",
-                            padding: "10px 12px",
-                            borderRadius: "8px",
-                            cursor: "pointer",
-                            transition: "background 0.2s",
-                            color: "rgba(255, 255, 255, 0.85)",
-                            fontSize: "14px"
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)"}
-                        onMouseLeave={(e) => e.currentTarget.style.background = "transparent"}
-                    >
-                        <TranslationOutlined style={{ fontSize: "16px", color: "rgba(255, 255, 255, 0.45)" }} />
+                    <div onClick={() => applyContextAction("translate")} className="qi-action-item">
+                        <TranslationOutlined className="qi-action-icon" />
                         <span>Translate...</span>
-                        <RightOutlined style={{ marginLeft: "auto", fontSize: "12px", color: "rgba(255, 255, 255, 0.25)" }} />
+                        <RightOutlined className="qi-action-arrow" />
                     </div>
                 </div>
             )}
 
             {/* Divider After Actions (Only in empty contextual state) */}
             {isChatEmpty && intent === "contextual" && (
-                <div style={{ maxWidth: "830px", margin: "4px auto 12px auto", width: "100%", padding: "0 16px" }}>
-                    <div style={{ height: "1px", background: "rgba(255, 255, 255, 0.08)" }} />
+                <div className="qi-divider-wrapper-bottom">
+                    <div className="qi-divider-line" />
                 </div>
             )}
 
             {isChatEmpty && threads.length > 0 && (
-                <div className="quick-chat-scroll" style={{ flex: 1, overflowY: "auto" }}>
+                <div className="quick-chat-scroll qi-recent-scroll">
                     {/* Only show top divider if NOT contextual (if contextual, the menu has its own dividers) */}
                     {intent !== "contextual" && (
-                        <div style={{ maxWidth: "830px", margin: "0 auto", width: "100%", padding: "0 16px" }}>
-                            <div style={{ height: "1px", background: "rgba(255, 255, 255, 0.08)", marginBottom: 20 }} />
+                        <div className="qi-top-divider-wrapper">
+                            <div className="qi-divider-line-mb" />
                         </div>
                     )}
 
-                    <div
-                        className="quick-recent-chats"
-                        style={{
-                            maxWidth: "830px",
-                            margin: "0 auto",
-                            width: "100%",
-                            padding: "0 16px" // Match InputBar internal padding
-                        }}
-                    >
-                        <div className="quick-section-title" style={{ marginBottom: 12, paddingLeft: 0 }}>
+                    <div className="quick-recent-chats qi-recent-chats-wrapper">
+                        <div className="quick-section-title qi-section-title-mb">
                             Recent Chats
                         </div>
                         <div className="quick-threads-list">
                             {threads.slice(0, 5).map((thread) => (
                                 <div
                                     key={thread.id}
-                                    className={`quick-thread-item ${selectedThread?.id === thread.id ? "active" : ""}`}
+                                    className={`quick-thread-item qi-thread-item-nudge ${selectedThread?.id === thread.id ? "active" : ""}`}
                                     onClick={() => selectThread(thread)}
-                                    style={{ marginLeft: -4 }} // Slight nudge for icon alignment
                                 >
                                     <MessageOutlined />
                                     <span className="quick-thread-title">{thread.title}</span>
