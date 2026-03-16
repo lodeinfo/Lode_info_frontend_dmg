@@ -512,9 +512,9 @@ export default function QuickInput() {
 
                                 // 1. Map suggestions to existing topics or "new" status
                                 const autoSuggestedItems = derivedSuggestions.map(name => {
-                                    const existing = topics.find(t => t.name.toLowerCase() === name.toLowerCase());
+                                    const existing = topics.find(t => t.name.trim().toLowerCase() === name.trim().toLowerCase());
                                     return {
-                                        name,
+                                        name: name.trim(),
                                         id: existing?.id || null,
                                         isNew: !existing,
                                         type: "suggestion"
@@ -718,6 +718,7 @@ export default function QuickInput() {
                     setModelMode={setModelMode}
                     modelModalOpen={modelModalOpen}
                     setModelModalOpen={setModelModalOpen}
+                    compact={!isChatEmpty} // Reduced size when chat is active
                 />
             </div>
 

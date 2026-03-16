@@ -6,9 +6,7 @@ import 'antd/dist/reset.css'
 import { ConfigProvider, theme } from 'antd';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <ConfigProvider theme={{ algorithm: theme.darkAlgorithm }}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </ConfigProvider>
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
 )

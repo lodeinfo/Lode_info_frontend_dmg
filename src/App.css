@@ -128,10 +128,17 @@ textarea {
     border: 1px solid transparent;
 }
 
-.gemini-menu-item:hover,
-.gemini-menu-item:hover .menu-item-icon,
-.gemini-menu-item:hover .menu-item-text {
+.gemini-menu-item:hover {
     background-color: var(--sidebar-hover-bg) !important;
+    color: var(--sidebar-hover-text) !important;
+}
+
+.gemini-menu-item:hover .menu-item-icon,
+.gemini-menu-item:hover .menu-item-icon-small,
+.gemini-menu-item:hover .menu-item-text,
+.gemini-menu-item:hover .search-close-icon,
+.gemini-menu-item:hover .ant-input,
+.gemini-menu-item:hover .ant-input::placeholder {
     color: var(--sidebar-hover-text) !important;
 }
 
@@ -139,6 +146,27 @@ textarea {
     background-color: var(--sidebar-active-bg) !important;
     color: var(--sidebar-active-text) !important;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.gemini-menu-item.active .menu-item-icon,
+.gemini-menu-item.active .menu-item-icon-small,
+.gemini-menu-item.active .menu-item-text,
+.gemini-menu-item.active .search-close-icon,
+.gemini-menu-item.active .ant-input,
+.gemini-menu-item.active .ant-input::placeholder {
+    color: var(--sidebar-active-text) !important;
+}
+
+/* Ensure placeholder is visible but slightly faded */
+.ant-input::placeholder {
+    color: inherit !important;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.gemini-menu-item:hover .ant-input::placeholder,
+.gemini-menu-item.active .ant-input::placeholder {
+    opacity: 0.8;
 }
 
 .new-chat-btn-dark {
@@ -285,6 +313,21 @@ textarea {
 }
 
 /* Custom markdown styles within AI content */
+.ai-content a {
+    color: #1a73e8; /* Always use Google blue for links */
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+[data-theme="dark"] .ai-content a {
+    color: #8ab4f8; /* Dark mode optimized blue */
+}
+
+.ai-content a:hover {
+    text-decoration: underline;
+}
+
 .ai-content h1,
 .ai-content h2,
 .ai-content h3 {
@@ -448,4 +491,210 @@ body {
 
 .ant-layout {
     min-width: 470px;
+}
+
+/* --- TOPIC MODAL STYLES (Compact & Theme-Aware) --- */
+.modal-section {
+    margin-bottom: 24px;
+}
+
+.modal-notebook-heading {
+    text-align: center;
+    margin: 10px 0 24px;
+}
+
+.modal-notebook-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.2;
+}
+
+.modal-notebook-subtitle {
+    font-family: 'Outfit', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 50%, #10b981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.modal-section-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.modal-drop-zone {
+    background: var(--bg-sources);
+    border: 1px dashed var(--border-color);
+    border-radius: 16px;
+    padding: 30px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .modal-drop-zone {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.modal-drop-zone:hover {
+    border-color: var(--accent-blue);
+    background: rgba(26, 115, 232, 0.05);
+}
+
+.modal-drop-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+.modal-action-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.modal-action-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 40px; /* Fixed height for symmetry */
+    padding: 0 24px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.modal-action-pill:hover {
+    box-shadow: 0 4px 12px var(--shadow-medium);
+    background: var(--bg-hover);
+    border-color: var(--accent-blue);
+}
+
+.modal-doc-icon {
+    font-size: 14px;
+}
+
+.modal-input-compact {
+    width: 100%;
+    margin: 0 auto 16px;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 10px !important;
+    background: var(--bg-input) !important;
+    transition: all 0.3s ease;
+}
+
+.modal-input-compact:focus-within {
+    border-color: var(--accent-blue) !important;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.1);
+}
+
+.modal-input-compact .ant-input {
+    font-size: 14px;
+    padding: 8px 12px;
+    color: var(--text-primary) !important;
+}
+
+/* Topic Cards Refined */
+.modal-topic-card-selected {
+    cursor: pointer;
+    border: 1.5px solid var(--accent-blue) !important;
+    background: rgba(26, 115, 232, 0.1) !important;
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.15);
+    border-radius: 12px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px; /* Added margin to prevent clipping */
+}
+
+.modal-topic-card {
+    cursor: pointer;
+    border: 1px solid var(--border-color) !important;
+    background: var(--bg-input) !important;
+    border-radius: 12px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px; /* Added margin to prevent clipping */
+}
+
+.modal-topic-card:hover {
+    border-color: var(--accent-blue) !important;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-medium);
+}
+
+.modal-topic-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.modal-divider {
+    margin: 24px 0;
+    border-top-color: var(--border-color) !important;
+}
+
+.modal-doc-item {
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 3px;
+}
+
+/* Ant Modal Theme Compatibility */
+.ant-modal-content {
+    background-color: var(--bg-primary) !important;
+    box-shadow: var(--shadow-medium) !important;
+}
+
+.ant-modal-close {
+    top: 16px !important;
+    right: 16px !important;
+    color: var(--text-tertiary) !important;
+}
+
+.ant-modal-close:hover {
+    color: var(--text-primary) !important;
+}
+
+.modal-doc-item {
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    color: var(--text-primary);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-doc-item:hover {
+    background: var(--bg-hover);
+    transform: translateX(4px);
+    color: var(--accent-blue);
 }

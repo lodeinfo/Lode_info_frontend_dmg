@@ -39,6 +39,7 @@ const TopicModal = ({
     };
 
     const scrollRef = useRef(null);
+    const textAreaRef = useRef(null);
 
     const handleScroll = (e) => {
         const { scrollTop, scrollHeight, clientHeight } = e.target;
@@ -105,7 +106,7 @@ const TopicModal = ({
             </Modal>
 
             <Modal
-                title="Topics"
+                title={null} // Custom header
                 open={open}
                 onCancel={() => {
                     onClose();
@@ -113,136 +114,151 @@ const TopicModal = ({
                     setPastedText("");
                 }}
                 footer={null}
-                width={isCompact ? 480 : 600}
+                width={isCompact ? 480 : 640}
                 centered={isCompact}
+                style={{ top: 20 }} // Bring it up a bit
             >
-                <div className="modal-section" style={isCompact ? { marginBottom: 12 } : {}}>
-                    <div className="modal-section-title" style={isCompact ? { marginBottom: 6 } : {}}>
-                        {selectedTopic ? "Selected Topic" : "Create New Topic"}
-                    </div>
-
-                    <Space.Compact style={{ width: '100%' }}>
-                        <Input
-                            placeholder="Enter topic name"
-                            value={newTopicName}
-                            onChange={(e) => setNewTopicName(e.target.value)}
-                            className="modal-input-flex"
-                        />
-
-                        <Upload
-                            beforeUpload={(file) => {
-                                setFileToUpload(file);
-                                return false;
-                            }}
-                            showUploadList={false}
-                            accept=".txt,.pdf,.md"
-                        >
-                            <Button icon={<CloudUploadOutlined />}>
-                                {fileToUpload
-                                    ? fileToUpload.name.substring(0, 15) + "..."
-                                    : "File"}
-                            </Button>
-                        </Upload>
-
-                        <Button
-                            type="primary"
-                            onClick={onSubmit}
-                            loading={uploading}
-                            disabled={!newTopicName.trim()}
-                        >
-                            {selectedTopic ? "Update" : "Create"}
-                        </Button>
-                    </Space.Compact>
-
-                    {fileToUpload && (
-                        <div className="modal-file-selected">
-                            Selected: {fileToUpload.name}
-                            <Button type="link" size="small" onClick={() => setFileToUpload(null)}>
-                                Remove
-                            </Button>
-                        </div>
-                    )}
+                <div className="modal-notebook-heading" style={{ margin: '0 0 20px' }}>
+                    <div className="modal-notebook-title" style={{ fontSize: 20 }}>Create Smart Overviews from</div>
+                    <div className="modal-notebook-subtitle" style={{ fontSize: 20 }}>your documents</div>
                 </div>
 
-                <div className="modal-section" style={isCompact ? { marginTop: 8, marginBottom: 12 } : { marginTop: 16 }}>
-                    <div className="modal-section-title" style={isCompact ? { marginBottom: 6 } : {}}>Add Your Text</div>
-                    <Input.TextArea
-                        placeholder="Paste or write text here..."
-                        value={pastedText}
-                        onChange={(e) => setPastedText(e.target.value)}
-                        autoSize={isCompact ? { minRows: 1, maxRows: 3 } : { minRows: 3, maxRows: 6 }}
+                <div className="modal-section" style={{ marginBottom: 14 }}>
+                    <Input
+                        placeholder="Topic Name (e.g., Project X)"
+                        value={newTopicName}
+                        onChange={(e) => setNewTopicName(e.target.value)}
+                        className="modal-input-compact"
+                        size="middle"
                     />
                 </div>
 
-                {/* ✅ NEW: SHOW DOCUMENTS OF SELECTED TOPIC */}
-                {documents.length > 0 && (
-                    <div className="modal-section" style={isCompact ? { marginBottom: 12 } : {}}>
-                        <div className="modal-section-title" style={isCompact ? { marginBottom: 4 } : {}}>Topic Documents</div>
+                <div className="modal-section" style={{ marginBottom: 14 }}>
+                    <div className="modal-drop-zone" style={{ padding: '24px 16px' }}>
+                        <div className="modal-drop-text" style={{ fontSize: 14, marginBottom: 14 }}>or drop your files here</div>
+                        
+                        <div className="modal-action-pills">
+                            <Upload
+                                beforeUpload={(file) => {
+                                    setFileToUpload(file);
+                                    return false;
+                                }}
+                                showUploadList={false}
+                                accept=".txt,.pdf,.md"
+                            >
+                                <div className="modal-action-pill">
+                                    <CloudUploadOutlined style={{ fontSize: 16 }} />
+                                    <span>Files</span>
+                                </div>
+                            </Upload>
 
-                        {documents.map(doc => (
-                            <div
-                                key={doc.id}
-                                onClick={() => openViewer(doc)}   // ✅ ONLY CHANGE
-                                style={{
-                                    padding: "6px 10px",
-                                    borderRadius: 6,
-                                    cursor: "pointer",
-                                    transition: "background 0.15s ease, transform 0.1s ease",
-                                    userSelect: "none"
-                                }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = "rgba(0,0,0,0.05)";
-                                    e.currentTarget.style.transform = "translateX(2px)";
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = "transparent";
-                                    e.currentTarget.style.transform = "translateX(0px)";
+                            <div 
+                                className="modal-action-pill"
+                                onClick={() => textAreaRef.current?.focus()}
+                            >
+                                <CheckOutlined style={{ fontSize: 16 }} />
+                                <span>Text</span>
+                            </div>
+
+                            <Button
+                                type="primary"
+                                shape="round"
+                                size="large"
+                                onClick={onSubmit}
+                                loading={uploading}
+                                disabled={!newTopicName.trim()}
+                                style={{ 
+                                    marginLeft: 12, 
+                                    height: 40, 
+                                    padding: '0 24px',
+                                    fontSize: 14,
+                                    fontWeight: 500,
+                                    borderRadius: 20
                                 }}
                             >
-                                📄 {doc.file_name || doc.title}
+                                {selectedTopic ? "Update Source" : "Create Topic"}
+                            </Button>
+                        </div>
+
+                        {fileToUpload && (
+                            <div className="modal-file-selected" style={{ marginTop: 8, padding: '2px 10px', fontSize: 11 }}>
+                                <strong>{fileToUpload.name}</strong>
+                                <Button type="link" size="small" onClick={() => setFileToUpload(null)} danger style={{ padding: '0 4px', fontSize: 11 }}>
+                                    ✕
+                                </Button>
                             </div>
-                        ))}
+                        )}
+                    </div>
+                </div>
+
+                <div className="modal-section" style={{ marginBottom: 12 }}>
+                    <div className="modal-section-title" style={{ marginBottom: 4, fontSize: 11 }}>Add Content</div>
+                    <Input.TextArea
+                        ref={textAreaRef}
+                        placeholder="Paste text here..."
+                        value={pastedText}
+                        onChange={(e) => setPastedText(e.target.value)}
+                        autoSize={{ minRows: 2, maxRows: 4 }}
+                        style={{ borderRadius: 8, padding: '8px 10px', fontSize: 13 }}
+                    />
+                </div>
+
+                {documents.length > 0 && (
+                    <div className="modal-section" style={{ marginBottom: 12 }}>
+                        <div className="modal-section-title" style={{ textAlign: 'left', marginBottom: 4, fontSize: 11 }}>Topic Documents</div>
+                        <div style={{ background: 'var(--bg-sources)', padding: 6, borderRadius: 10, maxHeight: 80, overflowY: 'auto' }}>
+                            {documents.map(doc => (
+                                <div
+                                    key={doc.id}
+                                    onClick={() => openViewer(doc)}
+                                    className="modal-doc-item"
+                                    style={{ padding: '4px 8px', fontSize: 12 }}
+                                >
+                                    📄 {doc.file_name || doc.title}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
 
-                <Divider className="modal-divider" style={isCompact ? { margin: '8px 0' } : {}} />
+                <Divider className="modal-divider" style={{ margin: '12px 0' }} />
 
-                <div style={isCompact ? { marginBottom: 0 } : {}}>
-                    <div className="modal-section-title" style={isCompact ? { marginBottom: 6 } : {}}>Existing Topics</div>
+                <div className="modal-section" style={{ marginBottom: 0 }}>
+                    <div className="modal-section-title" style={{ textAlign: 'left', marginBottom: 8, fontSize: 11 }}>Existing Topics</div>
 
                     <Input
-                        placeholder="Search topics..."
-                        prefix={<SearchOutlined />}
+                        placeholder="Search library..."
+                        prefix={<SearchOutlined style={{ color: '#9ca3af' }} />}
                         onChange={(e) => onTopicSearch(e.target.value)}
                         className="modal-search-input"
-                        style={isCompact ? { marginBottom: 8 } : {}}
+                        size="small"
+                        style={{ borderRadius: 8, marginBottom: 12 }}
                         allowClear
                     />
 
                     <div
                         className="modal-topics-scroll"
-                        style={isCompact ? { maxHeight: '100px' } : {}}
+                        style={{ maxHeight: isCompact ? '120px' : '180px', overflowX: 'hidden' }}
                         ref={scrollRef}
                         onScroll={handleScroll}
                     >
-                        <Row gutter={[12, 12]}>
+                        <Row gutter={[8, 8]}>
                             {allTopics.map((t) => (
                                 <Col span={12} key={t.id}>
-                                    <Card
-                                        size="small"
+                                    <div
                                         className={
                                             pickedTopicId === t.id
                                                 ? "modal-topic-card-selected"
                                                 : "modal-topic-card"
                                         }
+                                        style={{ padding: '8px 12px' }}
                                     >
-                                        <span className="modal-topic-name">{t.name}</span>
-
+                                        <span className="modal-topic-name" style={{ fontSize: 13, fontWeight: 500 }}>{t.name}</span>
                                         <Button
                                             type={pickedTopicId === t.id ? "primary" : "default"}
                                             size="small"
-                                            icon={pickedTopicId === t.id ? <CheckOutlined /> : null}
-                                            onClick={() => {
+                                            onClick={(e) => {
+                                                e.stopPropagation();
                                                 if (pickedTopicId === t.id) {
                                                     setPickedTopicId(null);
                                                     setTopic(null);
@@ -253,10 +269,11 @@ const TopicModal = ({
                                                     setNewTopicName(t.name);
                                                 }
                                             }}
+                                            style={{ borderRadius: 6, fontSize: 12 }}
                                         >
                                             {pickedTopicId === t.id ? "Selected" : "Select"}
                                         </Button>
-                                    </Card>
+                                    </div>
                                 </Col>
                             ))}
 
@@ -264,10 +281,9 @@ const TopicModal = ({
                                 <>
                                     {[...Array(4)].map((_, i) => (
                                         <Col span={12} key={`skeleton-${i}`}>
-                                            <Card size="small" className="modal-topic-card">
+                                            <div className="modal-topic-card" style={{ padding: '12px 16px' }}>
                                                 <Skeleton.Input active size="small" style={{ width: 100 }} />
-                                                <Skeleton.Button active size="small" shape="round" style={{ width: 60 }} />
-                                            </Card>
+                                            </div>
                                         </Col>
                                     ))}
                                 </>

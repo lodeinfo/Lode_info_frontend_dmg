@@ -9,7 +9,7 @@ let mainWindow = null;
 let floatingWindow = null;
 let tray = null;
 
-const iconPath = path.resolve(__dirname, "LodeInfo.ico");
+const iconPath = path.resolve(__dirname, "public", "LodeInfo.ico");
 
 /* ---------------- MAIN WINDOW ---------------- */
 
@@ -77,8 +77,8 @@ function createFloatingWindow(intent = "manual") {
   /* ✅ NEW → Contextual sizing logic */
   const isContextual = intent === "contextual";
 
-  const windowWidth = isContextual ? 1000 : 700;
-  const windowHeight = isContextual ? 520 : 300;
+  const windowWidth = isContextual ? 1000 : 780;
+  const windowHeight = isContextual ? 520 : 380;
 
   if (floatingWindow) {
     if (isDev) {
@@ -86,7 +86,10 @@ function createFloatingWindow(intent = "manual") {
     }
 
     /* ✅ Resize dynamically when reused */
+    floatingWindow.setResizable(true); // Temporarily allow resize
     floatingWindow.setSize(windowWidth, windowHeight);
+    floatingWindow.setResizable(false); // Lock it back
+    floatingWindow.center(); // Center on current monitor
 
     floatingWindow.show();
     floatingWindow.focus();

@@ -15,11 +15,12 @@ const InputBar = ({
     modelMode,
     setModelMode,
     modelModalOpen,    // Use this prop instead of local state
-    setModelModalOpen  // Use this prop to update state
+    setModelModalOpen, // Use this prop to update state
+    compact = false    // New prop for smaller styling
 }) => {
     return (
-        <div className="input-bar-wrapper">
-            <div className="gemini-input-container input-bar-container">
+        <div className={`input-bar-wrapper ${compact ? 'compact-wrapper' : ''}`}>
+            <div className={`gemini-input-container input-bar-container ${compact ? 'compact' : ''}`}>
                 {/* Top: Text Area */}
                 <TextArea
                     ref={inputRef}

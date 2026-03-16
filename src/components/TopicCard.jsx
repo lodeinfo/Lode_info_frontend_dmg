@@ -17,7 +17,13 @@ const TopicCard = ({ topic, onSelect }) => {
 
             <div className="topic-date">
                 Created:{" "}
-                {new Date(topic.created_at).toLocaleDateString()}
+                {new Date(topic.created_at).toLocaleString([], {
+                    weekday: "short",
+                    month: "short",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                })}
             </div>
         </Card>
     );

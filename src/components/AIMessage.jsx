@@ -30,7 +30,10 @@ const AIMessage = ({ content, sources, createdAt, selectedModel }) => {
                 <span className="ai-name">LodeInfo AI</span>
                 <span className="ai-time">
                     {createdAt
-                        ? new Date(createdAt).toLocaleTimeString([], {
+                        ? new Date(createdAt).toLocaleString([], {
+                            weekday: "short",
+                            month: "short",
+                            day: "numeric",
                             hour: "2-digit",
                             minute: "2-digit",
                         })
@@ -104,8 +107,8 @@ const AIMessage = ({ content, sources, createdAt, selectedModel }) => {
                         position: "absolute",
                         bottom: "8px",
                         right: "8px",
-                        background: "rgba(40,40,40,0.85)",
-                        border: "1px solid rgba(255,255,255,0.1)",
+                        background: "var(--bg-primary)",
+                        border: "1px solid var(--border-color)",
                         borderRadius: "6px",
                         padding: "3px 8px",
                         cursor: "pointer",
@@ -113,7 +116,7 @@ const AIMessage = ({ content, sources, createdAt, selectedModel }) => {
                         alignItems: "center",
                         gap: "4px",
                         fontSize: "11px",
-                        color: copied ? "#4caf50" : "rgba(255,255,255,0.6)",
+                        color: copied ? "#4caf50" : "var(--text-secondary)",
                         zIndex: 10,
                         transition: "color 0.2s"
                     }}

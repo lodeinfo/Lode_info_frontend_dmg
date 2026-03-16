@@ -123,25 +123,30 @@
         align-items: center;
         width: 100%;
         gap: 8px;
+        padding-right: 4px;
     }
 
-    .search-input-dark {
-        height: 18px;
-        padding: 0;
-        background: transparent;
-        color: #fff;
-    }
-
+    .search-input-dark,
     .search-input-light {
-        height: 18px;
+        height: 20px;
         padding: 0;
         background: transparent;
-        color: #000;
+        color: inherit;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1;
     }
 
     .search-close-icon {
         cursor: pointer;
         font-size: 14px;
+        opacity: 0.6;
+        transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .search-close-icon:hover {
+        opacity: 1;
+        transform: scale(1.1);
     }
 
     .recent-chats-scroll {
@@ -298,7 +303,8 @@
 
         padding: 16px;
 
-        background: #343434;
+        background: var(--bg-primary);
+        color: var(--text-primary);
         border-radius: 14px;
 
         box-sizing: border-box;
@@ -308,7 +314,8 @@
 
     /* ✅ Slight panel separation */
     .quick-input-window .input-bar-container {
-        background: #3f3f3f !important;
+        background: var(--bg-input) !important;
+        border: 1px solid var(--border-color);
     }
 
     /* ✅ Better dropdown readability */
@@ -318,7 +325,7 @@
 
     /* ✅ Softer disclaimer */
     .quick-input-window .input-disclaimer {
-        color: rgba(255, 255, 255, 0.55);
+        color: var(--text-tertiary);
     }
 
     /* ---------------- QUICK INPUT CONTEXT ACTIONS ---------------- */
@@ -389,7 +396,7 @@
         font-size: 11px;
         font-weight: 600;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.4);
+        color: var(--text-tertiary);
         margin-bottom: 8px;
         padding-left: 8px;
     }
@@ -407,18 +414,18 @@
         padding: 8px 12px;
         border-radius: 8px;
         cursor: pointer;
-        color: rgba(255, 255, 255, 0.8);
+        color: var(--text-secondary);
         font-size: 13px;
         transition: background 0.2s;
     }
 
     .quick-thread-item:hover {
-        background: rgba(255, 255, 255, 0.05);
+        background: var(--bg-hover);
     }
 
     .quick-thread-item.active {
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
+        background: var(--bg-active);
+        color: var(--text-active);
     }
 
     .quick-thread-title {
