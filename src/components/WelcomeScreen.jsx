@@ -17,7 +17,7 @@ const WelcomeScreen = ({
     return (
         <div className="welcome-container welcome-wrapper">
             <div className="welcome-text">
-                <div className="welcome-line-1">Hi {user?.firstName?.split(' ')[0] || user?.username || 'User'}</div>
+                <div className="welcome-line-1">Hi {user?.first_name?.split(' ')[0] || user?.username || 'User'}</div>
                 <div className="welcome-line-2">Let's get started.</div>
             </div>
 
