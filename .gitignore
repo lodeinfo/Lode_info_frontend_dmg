@@ -48,3 +48,7 @@ chrome-extension/
 
 # optional files
 files.txt
+
+release/
+dist/
+node_modules/
