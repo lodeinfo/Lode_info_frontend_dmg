@@ -29,7 +29,7 @@
 
     .sidebar-branding-wrapper.branding-expanded,
     .sidebar-branding-wrapper.branding-collapsed {
-        padding: 18px 21px; /* Center logo @ 36px (21 + 15) */
+        padding: 18px 24px; /* 24px padding + 12px (half 24px logo) = 36px center anchor */
         align-items: flex-start;
         width: 100%;
         transition: padding 0.3s ease;
@@ -40,7 +40,7 @@
         align-items: center;
         width: 100%;
         margin-bottom: 8px;
-        min-height: 30px;
+        min-height: 24px;
         overflow: hidden !important;
         flex-wrap: nowrap;
         gap: 15px; /* Increased spacing as requested */
@@ -87,13 +87,13 @@
 
     .menu-toggle-btn {
         margin-top: 4px;
-        margin-left: -5px !important; /* Forces 36px center (21 padding + 20 half-width - 5 offset) */
+        margin-left: -8px !important; /* Adjust to stay centered with 24px logo (24 padding + 20 half-width - 8 offset = 36) */
         transition: margin 0.3s ease;
     }
 
     .sidebar-custom-logo {
-        width: 30px !important;
-        height: 30px !important;
+        width: 24px !important;
+        height: 24px !important;
         object-fit: contain !important;
         transition: none;
         flex-shrink: 0;
