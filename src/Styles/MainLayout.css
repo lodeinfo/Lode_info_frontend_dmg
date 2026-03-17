@@ -69,9 +69,11 @@
     }
 
     .logo-text-collapsed {
-        opacity: 0;
-        max-width: 0;
-        display: none;
+        opacity: 1 !important;
+        max-width: 200px;
+        display: inline-block;
+        visibility: visible !important;
+        margin-left: 10px;
     }
 
     .menu-toggle-btn {
