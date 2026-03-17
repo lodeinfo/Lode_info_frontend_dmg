@@ -41,8 +41,8 @@
     }
 
     .logo-text {
-        font-weight: 600;
-        font-size: 20px;
+        font-weight: 700;
+        font-size: 22px;
         white-space: nowrap;
         overflow: hidden;
         transition: all 0.3s ease;
@@ -238,8 +238,8 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        gap: 14px;
-        padding: 18px 18px;
+        width: 48px !important;
+        height: 48px !important;
     }
 
     .logo-area-collapsed {
@@ -253,8 +253,8 @@
 
     /* Custom Logo */
     .sidebar-custom-logo {
-        width: 38px !important;
-        height: 38px !important;
+        width: 58px !important;
+        height: 58px !important;
         object-fit: contain !important;
         transition: all 0.3s ease;
     }

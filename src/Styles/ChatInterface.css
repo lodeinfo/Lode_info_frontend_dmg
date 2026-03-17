@@ -141,10 +141,10 @@
 
 /* Branding Header (Collapsed Sidebar) */
 .branding-header {
-    padding: 20px 24px;
+    padding: 22px 26px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
     position: absolute;
     top: 0;
     left: 0;
@@ -153,8 +153,8 @@
 }
 
 .branding-logo-img {
-    width: 38px !important;
-    height: 38px !important;
+    width: 58px !important;
+    height: 58px !important;
     object-fit: contain !important;
 }
 
