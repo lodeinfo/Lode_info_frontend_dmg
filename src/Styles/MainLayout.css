@@ -248,7 +248,11 @@
 
     .branding-expanded .sidebar-logo-container {
         justify-content: flex-start;
-        gap: 8px; /* Spacing between fixed logo and shifting text */
+        gap: 0; /* Tightest possible */
+    }
+
+    .logo-text-expanded {
+        margin-left: 0; /* Minimal gap if logo has no padding */
     }
 
     .branding-collapsed .sidebar-logo-container {
