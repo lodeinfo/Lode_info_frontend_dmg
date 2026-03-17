@@ -17,8 +17,61 @@
         flex-shrink: 0;
     }
 
-    .logo-area-expanded, .logo-area-collapsed {
-        display: none; /* Replaced by sidebar-branding-wrapper */
+    /* Logo and Branding Styles (Unified) */
+    .sidebar-branding-wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 0;
+        align-items: center;
+        width: 100%;
+        transition: all 0.3s ease;
+    }
+
+    .branding-expanded {
+        padding: 18px 2px; /* Anchor center at 36px for 72px sidebar */
+        align-items: flex-start;
+    }
+
+    .sidebar-logo-container {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 8px;
+        min-height: 68px;
+        overflow: visible;
+        flex-wrap: nowrap;
+    }
+
+    .branding-expanded .sidebar-logo-container {
+        justify-content: flex-start;
+        gap: 8px; /* Fixed gap for perfect alignment */
+    }
+
+    .branding-collapsed .sidebar-logo-container {
+        justify-content: center;
+    }
+
+    .logo-text {
+        font-weight: 700;
+        font-size: 22px;
+        white-space: nowrap;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        color: var(--text-primary); /* Explicitly set color */
+        flex-shrink: 0;
+    }
+
+    .logo-text-expanded {
+        opacity: 1 !important;
+        max-width: 200px;
+        display: inline-block;
+        visibility: visible !important;
+    }
+
+    .logo-text-collapsed {
+        opacity: 0;
+        max-width: 0;
+        display: none;
     }
 
     .menu-toggle-btn {
@@ -29,28 +82,20 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 0 auto;
     }
 
-    .logo-text {
-        font-weight: 700;
-        font-size: 22px;
-        white-space: nowrap;
-        overflow: hidden;
-        transition: all 0.3s ease;
+    .branding-expanded .menu-toggle-btn {
+        margin-top: 4px;
+        margin-left: 16px; /* Align with 36px center */
     }
 
-    .logo-text-expanded {
-        opacity: 1;
-        max-width: 200px;
-        margin-left: 4px;
-        display: inline-block;
-    }
-
-    .logo-text-collapsed {
-        opacity: 0;
-        max-width: 0;
-        margin-left: 0;
-        display: none;
+    .sidebar-custom-logo {
+        width: 68px !important;
+        height: 68px !important;
+        object-fit: contain !important;
+        transition: none;
+        flex-shrink: 0;
     }
 
     .menu-item-base {
@@ -224,91 +269,6 @@
         color: var(--text-secondary);
     }
 
-    .sidebar-branding-wrapper {
-        display: flex;
-        flex-direction: column;
-        padding: 10px 0;
-        align-items: center;
-        width: 100%;
-        transition: all 0.3s ease;
-    }
-
-    .branding-expanded {
-        padding: 18px 6px; /* Adjusted to keep logo center at 40px */
-        align-items: flex-start;
-    }
-
-    .sidebar-logo-container {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        margin-bottom: 8px;
-        min-height: 68px; /* Maintain height */
-    }
-
-    .branding-expanded .sidebar-logo-container {
-        justify-content: flex-start;
-        gap: 0; /* Tightest possible */
-    }
-
-    .logo-text-expanded {
-        margin-left: 0; /* Minimal gap if logo has no padding */
-    }
-
-    .branding-collapsed .sidebar-logo-container {
-        justify-content: center;
-    }
-
-    .branding-collapsed .menu-toggle-btn {
-        margin: 0 auto;
-    }
-
-    .branding-expanded .menu-toggle-btn {
-        margin-top: 4px;
-        margin-left: 12px; /* Align with menu items */
-    }
-
-    /* Custom Logo */
-    .sidebar-custom-logo {
-        width: 68px !important;
-        height: 68px !important;
-        object-fit: contain !important;
-        transition: none; /* Instant scale/position to prevent jumping */
-        flex-shrink: 0;
-    }
-
-    .logo-visible {
-        opacity: 1;
-    }
-
-    .logo-hidden {
-        opacity: 0;
-        width: 0;
-        margin: 0;
-        transform: scale(0);
-    }
-
-    .logo-text {
-        font-weight: 700;
-        font-size: 22px;
-        white-space: nowrap;
-        overflow: hidden;
-        transition: all 0.3s ease;
-    }
-
-    .logo-text-expanded {
-        opacity: 1;
-        max-width: 200px;
-        margin-left: 0;
-        display: inline-block;
-    }
-
-    .logo-text-collapsed {
-        opacity: 0;
-        max-width: 0;
-        margin-left: 0;
-        display: none;
-    }
 
     /* ---------------- QUICK INPUT POPUP WINDOW ---------------- */
 
