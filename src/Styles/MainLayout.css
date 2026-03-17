@@ -38,12 +38,12 @@
     .sidebar-logo-container {
         display: flex;
         align-items: center;
-        width: auto; /* Allow it to grow beyond sidebar width */
-        min-width: 0;
+        width: 100%;
         margin-bottom: 8px;
         min-height: 30px;
-        overflow: visible !important;
+        overflow: hidden !important;
         flex-wrap: nowrap;
+        gap: 15px; /* Increased spacing as requested */
     }
 
     .sidebar-logo-container {
@@ -68,12 +68,10 @@
     }
 
     .logo-text-collapsed {
-        opacity: 1 !important;
-        max-width: 200px;
-        display: inline-block;
-        visibility: visible !important;
-        margin-left: 10px;
-        color: var(--text-primary);
+        opacity: 0 !important;
+        max-width: 0 !important;
+        display: none !important;
+        visibility: hidden !important;
     }
 
     .menu-toggle-btn {
