@@ -45,7 +45,7 @@
 
     .branding-expanded .sidebar-logo-container {
         justify-content: flex-start;
-        gap: 4px;
+        gap: 1px;
         /* Fixed gap for perfect alignment */
     }
 
