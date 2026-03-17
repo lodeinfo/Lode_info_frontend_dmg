@@ -144,7 +144,7 @@
     padding: 22px 26px;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 0;
     position: absolute;
     top: 0;
     left: 0;

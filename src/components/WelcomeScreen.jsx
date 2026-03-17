@@ -17,8 +17,8 @@ const WelcomeScreen = ({
     return (
         <div className="welcome-container welcome-wrapper">
             <div className="welcome-text">
-                <div className="welcome-line-1">Hello, {user?.firstName || user?.username || 'User'}</div>
-                <div className="welcome-line-2">LodeInfo is here to help you work faster.</div>
+                <div className="welcome-line-1">Hi {user?.firstName?.split(' ')[0] || user?.username || 'User'}</div>
+                <div className="welcome-line-2">Let's get started.</div>
             </div>
 
             {/* Centered Input */}
