@@ -27,9 +27,12 @@
         transition: all 0.3s ease;
     }
 
-    .branding-expanded {
-        padding: 18px 21px; /* 21px padding + 15px (half 30px logo) = 36px center anchor */
+    .sidebar-branding-wrapper.branding-expanded,
+    .sidebar-branding-wrapper.branding-collapsed {
+        padding: 18px 21px; /* Center logo @ 36px (21 + 15) */
         align-items: flex-start;
+        width: 100%;
+        transition: padding 0.3s ease;
     }
 
     .sidebar-logo-container {
@@ -42,14 +45,8 @@
         flex-wrap: nowrap;
     }
 
-    .branding-expanded .sidebar-logo-container {
-        justify-content: flex-start;
-        gap: 10px;
-        /* Fixed gap for perfect alignment */
-    }
-
-    .branding-collapsed .sidebar-logo-container {
-        justify-content: center;
+    .sidebar-logo-container {
+        justify-content: flex-start !important;
     }
 
     .logo-text {
@@ -90,9 +87,10 @@
         margin: 0 auto;
     }
 
-    .branding-expanded .menu-toggle-btn {
+    .menu-toggle-btn {
         margin-top: 4px;
-        margin-left: -5px; /* Adjust to keep toggle btn centered with the logo */
+        margin-left: -5px !important; /* Forces 36px center (21 padding + 20 half-width - 5 offset) */
+        transition: margin 0.3s ease;
     }
 
     .sidebar-custom-logo {
