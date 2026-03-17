@@ -30,7 +30,7 @@
     },
     "win": {
       "target": "nsis",
-      "icon": "public/LodeInfo (3).ico"
+      "icon": "public/LodeInfo.ico"
     },
     "nsis": {
       "oneClick": false,
