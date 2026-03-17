@@ -144,7 +144,7 @@
     padding: 22px 26px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 4px;
     position: absolute;
     top: 0;
     left: 0;
@@ -153,14 +153,14 @@
 }
 
 .branding-logo-img {
-    width: 58px !important;
-    height: 58px !important;
+    width: 68px !important;
+    height: 68px !important;
     object-fit: contain !important;
 }
 
 .branding-text {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 700;
     color: var(--text-primary);
 }
 

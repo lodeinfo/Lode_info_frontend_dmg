@@ -238,7 +238,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        gap: 14px;
+        gap: 4px;
         padding: 18px 18px;
     }
 
@@ -253,8 +253,8 @@
 
     /* Custom Logo */
     .sidebar-custom-logo {
-        width: 58px !important;
-        height: 58px !important;
+        width: 68px !important;
+        height: 68px !important;
         object-fit: contain !important;
         transition: all 0.3s ease;
     }
@@ -271,8 +271,8 @@
     }
 
     .logo-text {
-        font-weight: 500;
-        font-size: 18px;
+        font-weight: 700;
+        font-size: 22px;
         white-space: nowrap;
         overflow: hidden;
         transition: all 0.3s ease;
@@ -281,7 +281,7 @@
     .logo-text-expanded {
         opacity: 1;
         max-width: 200px;
-        margin-left: 4px;
+        margin-left: 0;
         display: inline-block;
     }
 
