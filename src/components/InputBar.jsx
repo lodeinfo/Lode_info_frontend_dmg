@@ -112,7 +112,7 @@ const InputBar = ({
             </div>
 
             <div className="input-disclaimer">
-                LodeInfo may display inaccurate info, including about people, so
+                AI may display inaccurate information, so
                 double-check its responses.
             </div>
         </div>
