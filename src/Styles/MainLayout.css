@@ -35,10 +35,16 @@
         transition: all 0.3s ease;
     }
 
-    .sidebar-branding-wrapper.branding-expanded,
-    .sidebar-branding-wrapper.branding-collapsed {
-        padding: 18px 24px; /* 24px padding + 12px (half 24px logo) = 36px center anchor */
+    .sidebar-branding-wrapper.branding-expanded {
+        padding: 18px 24px;
         align-items: flex-start;
+        width: 100%;
+        transition: padding 0.3s ease;
+    }
+
+    .sidebar-branding-wrapper.branding-collapsed {
+        padding: 18px 0;
+        align-items: center;
         width: 100%;
         transition: padding 0.3s ease;
     }
@@ -55,7 +61,7 @@
     }
 
     .sidebar-logo-container {
-        justify-content: flex-start !important;
+        justify-content: center !important; /* Center logo in collapsed state */
     }
 
     .logo-text {
@@ -96,7 +102,7 @@
 
     .menu-toggle-btn {
         margin-top: 4px;
-        margin-left: -8px !important; /* Adjust to stay centered with 24px logo (24 padding + 20 half-width - 8 offset = 36) */
+        margin-left: 0 !important; /* Perfect center alignment */
         transition: margin 0.3s ease;
     }
 
