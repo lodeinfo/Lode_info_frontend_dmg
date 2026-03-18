@@ -22,31 +22,6 @@
     text-align: left;
 }
 
-
-
-.user-edit-textarea {
-    background: transparent !important;
-    border: none !important;
-    color: inherit !important;
-    font-size: 15px !important;
-    /* Match .chat-bubble-user from App.css */
-    line-height: 1.5 !important;
-    /* Match .chat-bubble-user from App.css */
-    font-weight: inherit !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    box-shadow: none !important;
-    font-family: inherit !important;
-    width: 100% !important;
-    outline: none !important;
-    resize: none !important;
-    display: block !important;
-}
-
-.user-edit-textarea:focus {
-    box-shadow: none !important;
-}
-
 .user-actions-row {
     display: flex;
     align-items: center;

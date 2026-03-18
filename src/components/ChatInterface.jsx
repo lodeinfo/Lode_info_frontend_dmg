@@ -44,6 +44,7 @@ const ChatInterface = ({
     const [fileToUpload, setFileToUpload] = useState(null);
     const [modelModalOpen, setModelModalOpen] = useState(false);
     const messagesEndRef = useRef(null);
+    const inputRef = useRef(null);
     const lastThreadIdRef = useRef(null);
 
     useEffect(() => {
@@ -168,56 +169,14 @@ const ChatInterface = ({
         }
     };
 
-    const handleEditMessage = async (index, newContent) => {
-        // Clone conversation
-        const updatedConv = [...conversation];
-
-        // Replace the user message
-        updatedConv[index] = { ...updatedConv[index], content: newContent };
-
-        // Remove the subsequent AI message if it exists
-        if (updatedConv[index + 1] && updatedConv[index + 1].type === "ai") {
-            updatedConv.splice(index + 1, updatedConv.length);
-        } else {
-            // If no AI message, just remove everything after this user message
-            updatedConv.splice(index + 1, updatedConv.length);
-        }
-
-        setConversation(updatedConv);
-        setLoading(true);
-
-        try {
-            const response = await onAskQuestion(
-                newContent,
-                thread?.id,
-                pickedTopicId,
-                selectedModel,
-                modelMode
-            );
-
-            if (response) {
-                const aiMessage = {
-                    type: "ai",
-                    content: response.answer,
-                    sources: response.sources,
-                    model: selectedModel,
-                    id: response.message_id
-                };
-                setConversation((prev) => [...prev, aiMessage]);
-            } else {
-                setConversation((prev) => [
-                    ...prev,
-                    { type: "ai", content: "Sorry, I encountered an error." },
-                ]);
-            }
-        } catch (e) {
-            setConversation((prev) => [
-                ...prev,
-                { type: "ai", content: "Sorry, I encountered an error." },
-            ]);
-        } finally {
-            setLoading(false);
-        }
+    const handleEditMessage = (index, content) => {
+        setQuestion(content);
+        // Small timeout to ensure the state update has propagated if needed, 
+        // though focus() usually works immediately on the DOM ref.
+        setTimeout(() => {
+            inputRef.current?.focus();
+        }, 0);
+        scrollToBottom();
     };
 
     const handleFeedback = async (messageId, feedbackType) => {
@@ -386,6 +345,7 @@ const ChatInterface = ({
             {!isChatEmpty && (
                 <div className="bottom-input-wrapper">
                     <InputBar
+                        inputRef={inputRef}
                         question={question}
                         setQuestion={setQuestion}
                         handleAsk={handleAsk}
