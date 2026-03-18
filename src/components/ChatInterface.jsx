@@ -221,11 +221,19 @@ const ChatInterface = ({
     };
 
     const handleFeedback = async (messageId, feedbackType) => {
+        if (!messageId || messageId === "undefined") {
+            console.error("❌ Cannot submit feedback: messageId is missing or invalid.", { messageId, feedbackType });
+            message.error("Unable to submit feedback (ID missing)");
+            return;
+        }
+
+        console.log(`Sending feedback for message ${messageId}: ${feedbackType}`);
+        
         try {
             await axios.post(`${API}/messages/${messageId}/feedback/`, { type: feedbackType });
-            message.success("Feedback submitted!");
+            message.success(`Response ${feedbackType}ed!`);
         } catch (error) {
-            console.error("Failed to submit feedback:", error);
+            console.error("Failed to submit feedback:", error?.response?.data || error.message);
             message.error("Failed to submit feedback.");
         }
     };
