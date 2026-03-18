@@ -38,7 +38,6 @@
     .sidebar-branding-wrapper.branding-expanded,
     .sidebar-branding-wrapper.branding-collapsed {
         padding: 18px 24px;
-        /* 24px padding + 12px (half 24px logo) = 36px center anchor */
         align-items: flex-start;
         width: 100%;
         transition: padding 0.3s ease;
@@ -51,10 +50,8 @@
         margin-bottom: 8px;
         min-height: 24px;
         overflow: visible !important;
-        /* Allow spill out when collapsed */
         flex-wrap: nowrap;
         gap: 15px;
-        /* Increased spacing as requested */
     }
 
     .sidebar-logo-container {
@@ -66,7 +63,6 @@
         font-size: 22px;
         white-space: nowrap;
         overflow: visible !important;
-        /* Allow spill out */
         transition: all 0.3s ease;
         color: var(--text-primary);
         flex-shrink: 0;
@@ -85,25 +81,27 @@
         display: inline-block !important;
         visibility: visible !important;
         transform: translateX(0);
-        /* Ensure it stays next to logo */
-    }
-
-    .menu-toggle-btn {
-        font-size: 16px;
-        width: 40px !important;
-        height: 40px !important;
-        min-width: 40px !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto;
     }
 
     .menu-toggle-btn {
         margin-top: 4px;
         margin-left: -8px !important;
-        /* Adjust to stay centered with 24px logo (24 padding + 20 half-width - 8 offset = 36) */
-        transition: margin 0.3s ease;
+        transition: all 0.2s ease !important;
+        background: transparent !important;
+        border: none !important;
+        width: 40px !important;
+        height: 40px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 20px !important; /* Match navigation items rounded corners */
+        font-size: 20px !important; /* Match navigation icon size */
+    }
+
+    .menu-toggle-btn:hover {
+        background-color: var(--sidebar-hover-bg) !important;
+        color: var(--sidebar-hover-text) !important;
+        opacity: 1 !important;
     }
 
     .sidebar-custom-logo {
