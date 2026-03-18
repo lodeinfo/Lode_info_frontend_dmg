@@ -4,6 +4,17 @@
     position: relative;
     transition: all 0.3s ease;
     min-width: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 24px;
+    background: transparent !important; /* Ensure no background leaks to actions */
+    padding: 0 !important;
+}
+
+.chat-bubble-user {
+    /* Background is handled by var(--user-bubble-bg) in App.css */
+    margin-bottom: 4px; 
 }
 
 .editing-mode {

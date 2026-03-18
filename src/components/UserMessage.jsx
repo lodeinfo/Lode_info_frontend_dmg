@@ -38,41 +38,39 @@ const UserMessage = ({ content, index, onEdit }) => {
     };
 
     return (
-        <div
-            className={`chat-bubble-user user-message-container ${isEditing ? "editing-mode" : ""}`}
-            onMouseEnter={() => !isEditing && setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-        >
-            {isEditing ? (
-                <TextArea
-                    value={editContent}
-                    onChange={(e) => setEditContent(e.target.value)}
-                    onPressEnter={(e) => {
-                        if (!e.shiftKey) {
-                            e.preventDefault();
-                            handleSaveEdit();
-                        }
-                    }}
-                    onKeyDown={(e) => {
-                        if (e.key === "Escape") handleCancelEdit();
-                    }}
-                    autoSize={{ minRows: 1 }}
-                    className="user-edit-textarea"
-                    autoFocus
-                    onBlur={handleSaveEdit}
-                />
-            ) : (
-                <>
-                    {content}
-                    <div className="user-actions-row">
-                        <div onClick={handleCopy} title="Copy message" style={{ cursor: "pointer" }}>
-                            {copied ? <CheckOutlined style={{ color: "#4caf50" }} /> : <CopyOutlined />}
-                        </div>
-                        <div onClick={handleStartEdit} title="Edit prompt" style={{ cursor: "pointer" }}>
-                            <EditOutlined />
-                        </div>
+        <div className={`user-message-container ${isEditing ? "editing-mode" : ""}`}>
+            <div className="chat-bubble-user">
+                {isEditing ? (
+                    <TextArea
+                        value={editContent}
+                        onChange={(e) => setEditContent(e.target.value)}
+                        onPressEnter={(e) => {
+                            if (!e.shiftKey) {
+                                e.preventDefault();
+                                handleSaveEdit();
+                            }
+                        }}
+                        onKeyDown={(e) => {
+                            if (e.key === "Escape") handleCancelEdit();
+                        }}
+                        autoSize={{ minRows: 1 }}
+                        className="user-edit-textarea"
+                        autoFocus
+                        onBlur={handleSaveEdit}
+                    />
+                ) : (
+                    content
+                )}
+            </div>
+            {!isEditing && (
+                <div className="user-actions-row">
+                    <div onClick={handleCopy} title="Copy message" style={{ cursor: "pointer" }}>
+                        {copied ? <CheckOutlined style={{ color: "#4caf50" }} /> : <CopyOutlined />}
                     </div>
-                </>
+                    <div onClick={handleStartEdit} title="Edit prompt" style={{ cursor: "pointer" }}>
+                        <EditOutlined />
+                    </div>
+                </div>
             )}
         </div>
     );
