@@ -94,7 +94,7 @@
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        border-radius: 20px !important; /* Match navigation items rounded corners */
+        border-radius: 12px !important; /* Rounded square shape instead of circle */
         font-size: 20px !important; /* Match navigation icon size */
     }
 
