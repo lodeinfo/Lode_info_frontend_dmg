@@ -35,29 +35,47 @@ const UserMessage = ({ content, index, onEdit }) => {
     const handleCancelEdit = () => {
         setIsEditing(false);
         setEditContent(content);
+        setEditContent(content);
     };
 
     return (
         <div className={`user-message-container ${isEditing ? "editing-mode" : ""}`}>
             <div className="chat-bubble-user">
                 {isEditing ? (
-                    <TextArea
-                        value={editContent}
-                        onChange={(e) => setEditContent(e.target.value)}
-                        onPressEnter={(e) => {
-                            if (!e.shiftKey) {
-                                e.preventDefault();
-                                handleSaveEdit();
-                            }
-                        }}
-                        onKeyDown={(e) => {
-                            if (e.key === "Escape") handleCancelEdit();
-                        }}
-                        autoSize={{ minRows: 1 }}
-                        className="user-edit-textarea"
-                        autoFocus
-                        onBlur={handleSaveEdit}
-                    />
+                    <div style={{ position: 'relative' }}>
+                        <TextArea
+                            value={editContent}
+                            onChange={(e) => setEditContent(e.target.value)}
+                            onPressEnter={(e) => {
+                                if (!e.shiftKey) {
+                                    e.preventDefault();
+                                    handleSaveEdit();
+                                }
+                            }}
+                            onKeyDown={(e) => {
+                                if (e.key === "Escape") handleCancelEdit();
+                            }}
+                            autoSize={{ minRows: 1, maxRows: 6 }}
+                            className="user-edit-textarea"
+                            autoFocus
+                            onBlur={handleSaveEdit}
+                        />
+                        {/* Ghost div mirrors typography and white-space to hold the bubble width exactly */}
+                        <div style={{ 
+                            visibility: 'hidden', 
+                            height: 0, 
+                            overflow: 'hidden', 
+                            whiteSpace: 'pre-wrap', 
+                            pointerEvents: 'none',
+                            fontSize: '15px',
+                            lineHeight: '1.5',
+                            fontFamily: 'inherit',
+                            padding: 0,
+                            margin: 0
+                        }}>
+                            {content}
+                        </div>
+                    </div>
                 ) : (
                     content
                 )}

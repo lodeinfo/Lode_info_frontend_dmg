@@ -8,8 +8,7 @@
     flex-direction: column;
     align-items: flex-end;
     margin-bottom: 24px;
-    background: transparent !important; /* Ensure no background leaks to actions */
-    padding: 0 !important;
+    background: transparent !important;
 }
 
 .chat-bubble-user {
@@ -22,7 +21,7 @@
 }
 
 .editing-mode {
-    padding: 12px 24px !important; /* Matches exactly .chat-bubble-user */
+    /* No additional padding needed here as .chat-bubble-user handles it */
 }
 
 .user-edit-textarea {
