@@ -190,7 +190,7 @@ const ChatInterface = ({
         
         try {
             await axios.post(`${API}/messages/${messageId}/feedback/`, { type: feedbackType });
-            message.success(feedbackType === 'like' ? "It's a good response" : "It's a bad response");
+            // message.success(feedbackType === 'like' ? "It's a good response" : "It's a bad response");
         } catch (error) {
             console.error("Failed to submit feedback:", error?.response?.data || error.message);
             message.error("Failed to submit feedback.");
