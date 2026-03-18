@@ -254,7 +254,7 @@ textarea {
 .ai-header {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px; /* Reduced from 12px for tighter grouping */
     margin-bottom: 12px;
 }
 
