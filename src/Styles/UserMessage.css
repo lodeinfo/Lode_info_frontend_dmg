@@ -31,38 +31,18 @@
     box-shadow: none !important;
 }
 
-.user-message-actions {
-    position: absolute;
-    bottom: -32px;
-    right: 0;
-    display: flex;
-    gap: 8px;
-    z-index: 100;
-}
-
-.user-message-action-btn {
-    background: rgba(30, 30, 30, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    width: 32px;
-    height: 32px;
+.user-actions-row {
     display: flex;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.6);
-    transition: all 0.2s ease;
-    backdrop-filter: blur(4px);
+    gap: 14px;
+    margin-top: 8px;
+    color: #9ca3af;
+    font-size: 15px;
+    opacity: 0.8;
+    justify-content: flex-end; /* Align with user message (usually right-aligned) */
 }
 
-.user-message-action-btn:hover {
-    background: rgba(50, 50, 50, 1);
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-}
-
-.user-message-action-btn.copied {
-    color: #4caf50;
-    border-color: #4caf50;
+.user-actions-row > div:hover {
+    color: var(--text-primary, #ffffff);
+    opacity: 1;
 }

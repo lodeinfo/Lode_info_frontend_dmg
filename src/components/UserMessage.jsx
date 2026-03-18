@@ -64,24 +64,14 @@ const UserMessage = ({ content, index, onEdit }) => {
             ) : (
                 <>
                     {content}
-                    {hovered && (
-                        <div className="user-message-actions">
-                            <button
-                                onClick={handleCopy}
-                                title="Copy message"
-                                className={`user-message-action-btn ${copied ? "copied" : ""}`}
-                            >
-                                {copied ? <CheckOutlined /> : <CopyOutlined />}
-                            </button>
-                            <button
-                                onClick={handleStartEdit}
-                                title="Edit prompt"
-                                className="user-message-action-btn"
-                            >
-                                <EditOutlined />
-                            </button>
+                    <div className="user-actions-row">
+                        <div onClick={handleCopy} title="Copy message" style={{ cursor: "pointer" }}>
+                            {copied ? <CheckOutlined style={{ color: "#4caf50" }} /> : <CopyOutlined />}
                         </div>
-                    )}
+                        <div onClick={handleStartEdit} title="Edit prompt" style={{ cursor: "pointer" }}>
+                            <EditOutlined />
+                        </div>
+                    </div>
                 </>
             )}
         </div>
