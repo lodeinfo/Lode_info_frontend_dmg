@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { CopyOutlined, CheckOutlined, EditOutlined } from "@ant-design/icons";
-import { CopyOutlined, CheckOutlined, EditOutlined } from "@ant-design/icons";
 import "../Styles/UserMessage.css";
 
 const UserMessage = ({ content, index, onEdit }) => {
