@@ -15,6 +15,10 @@
 .chat-bubble-user {
     /* Background is handled by var(--user-bubble-bg) in App.css */
     margin-bottom: 4px; 
+    min-width: 140px; /* Prevent being too compressed for short phrases */
+    max-width: 85% !important; /* Allow slightly more room than 80% */
+    width: fit-content;
+    text-align: left;
 }
 
 .editing-mode {
