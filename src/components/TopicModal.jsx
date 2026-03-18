@@ -252,24 +252,23 @@ const TopicModal = ({
                                                 : "modal-topic-card"
                                         }
                                         style={{ padding: '8px 12px' }}
+                                        onClick={() => {
+                                            if (pickedTopicId === t.id) {
+                                                setPickedTopicId(null);
+                                                setTopic(null);
+                                                setNewTopicName("");
+                                            } else {
+                                                setPickedTopicId(t.id);
+                                                setTopic(t);
+                                                setNewTopicName(t.name);
+                                            }
+                                        }}
                                     >
                                         <span className="modal-topic-name" style={{ fontSize: 13, fontWeight: 500 }}>{t.name}</span>
                                         <Button
                                             type={pickedTopicId === t.id ? "primary" : "default"}
                                             size="small"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                if (pickedTopicId === t.id) {
-                                                    setPickedTopicId(null);
-                                                    setTopic(null);
-                                                    setNewTopicName("");
-                                                } else {
-                                                    setPickedTopicId(t.id);
-                                                    setTopic(t);
-                                                    setNewTopicName(t.name);
-                                                }
-                                            }}
-                                            style={{ borderRadius: 6, fontSize: 12 }}
+                                            style={{ borderRadius: 6, fontSize: 12, pointerEvents: 'none' }}
                                         >
                                             {pickedTopicId === t.id ? "Selected" : "Select"}
                                         </Button>
