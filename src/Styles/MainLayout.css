@@ -246,8 +246,7 @@
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        background: #90abc9;
-        /* Slightly darker than user bubble (#e7edf5) */
+        background: #7a98ba; /* Darkened further as requested */
         color: var(--text-primary);
         display: flex;
         align-items: center;
@@ -502,8 +501,8 @@
         /* Slightly larger icons */
         color: var(--text-secondary) !important;
         margin-right: 12px !important;
-        width: 20px !important;
-        /* Fixed width for alignment */
+        width: 32px !important;
+        /* Fixed width matching mini-avatar for alignment */
         display: inline-flex !important;
         justify-content: center !important;
     }
