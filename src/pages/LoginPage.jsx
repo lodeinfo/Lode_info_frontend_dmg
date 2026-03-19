@@ -8,6 +8,10 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useTheme } from "../contexts/ThemeContext";
+import logo from "../assets/LodeInfo.ico";
+import "../Styles/Login.css";
+
+const { Title, Text } = Typography;
 
 const LoginPage = () => {
     const { isLoggedIn } = useAuth();

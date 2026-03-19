@@ -173,8 +173,10 @@ export const AuthProvider = ({ children }) => {
 
     if (isLoading) {
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#f0f2f5' }}>
-                <Spin size="large" tip="Verifying session..." />
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#f5f2eb' }}>
+                <Spin size="large" tip="Verifying session...">
+                    <div style={{ padding: 50 }} />
+                </Spin>
             </div>
         );
     }
