@@ -94,8 +94,10 @@
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        border-radius: 12px !important; /* Rounded square shape instead of circle */
-        font-size: 20px !important; /* Match navigation icon size */
+        border-radius: 12px !important;
+        /* Rounded square shape instead of circle */
+        font-size: 20px !important;
+        /* Match navigation icon size */
     }
 
     .menu-toggle-btn:hover {
@@ -244,8 +246,9 @@
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        background: var(--user-bubble-bg); /* Match user prompt box color */
-        color: var(--text-primary); /* Use theme text color for contrast */
+        background: #90abc9;
+        /* Slightly darker than user bubble (#e7edf5) */
+        color: var(--text-primary);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -451,7 +454,8 @@
         display: flex;
         align-items: center;
         gap: 12px;
-        padding: 8px 12px; /* Matched to menu items */
+        padding: 8px 12px;
+        /* Matched to menu items */
         width: 100%;
     }
 
@@ -494,9 +498,14 @@
 
     /* Icon styling for menu items */
     .dropdown-menu-item .anticon {
-        font-size: 16px !important;
+        font-size: 18px !important;
+        /* Slightly larger icons */
         color: var(--text-secondary) !important;
-        margin-right: 8px !important;
+        margin-right: 12px !important;
+        width: 20px !important;
+        /* Fixed width for alignment */
+        display: inline-flex !important;
+        justify-content: center !important;
     }
 
     .logout-item {
@@ -513,11 +522,12 @@
     .help-arrow-icon {
         font-size: 10px !important;
         opacity: 0.5;
-        margin-right: 0 !important; /* Reset icon margin for arrows */
+        margin-right: 0 !important;
+        /* Reset icon margin for arrows */
     }
 
     .ant-dropdown-menu-item-divider {
         background-color: var(--border-color) !important;
         opacity: 0.5;
         margin: 8px 0 !important;
-    }
+    }
