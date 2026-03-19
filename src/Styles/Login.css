@@ -183,6 +183,12 @@
   text-decoration: underline;
 }
 
+/* Theme-Specific Logo Adjustment for Login */
+/* Although login is dark by default, we apply this for consistency if data-theme="dark" is set */
+[data-theme="dark"] .login-logo-img {
+  filter: brightness(0) invert(1) !important;
+}
+
 /* Adjust Ant Design Components for Dark/Glass Theme */
 .ant-card-body {
   padding: 0 !important;

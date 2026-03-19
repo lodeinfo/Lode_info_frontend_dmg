@@ -69,6 +69,13 @@
     --welcome-color: #ffffff;
 }
 
+/* Theme-Specific Logo Adjustment */
+[data-theme="dark"] .branding-logo-img,
+[data-theme="dark"] .sidebar-custom-logo,
+[data-theme="dark"] .ai-logo-img {
+    filter: brightness(0) invert(1) !important;
+}
+
 body {
     font-family: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--bg-primary);

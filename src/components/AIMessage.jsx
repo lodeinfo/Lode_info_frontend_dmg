@@ -33,6 +33,7 @@ const AIMessage = ({ content, sources, createdAt, selectedModel, onFeedback, onR
                     <img 
                         src={logo} 
                         alt="LodeInfo AI" 
+                        className="ai-logo-img"
                         style={{ 
                             width: "20px", 
                             height: "20px", 
