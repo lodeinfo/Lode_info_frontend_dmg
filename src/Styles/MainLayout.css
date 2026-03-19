@@ -436,3 +436,88 @@
         text-overflow: ellipsis;
         flex: 1;
     }
+
+    /* ── ChatGPT Style Profile Dropdown ── */
+    .chatgpt-profile-dropdown .ant-dropdown-menu {
+        background-color: var(--bg-primary) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 14px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+        padding: 8px !important;
+        min-width: 240px !important;
+    }
+
+    .menu-user-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 12px; /* Matched to menu items */
+        width: 100%;
+    }
+
+    .mini-avatar {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 12px !important;
+    }
+
+    .user-info-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.2;
+    }
+
+    .user-info-name {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text-primary);
+    }
+
+    .user-info-email {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        margin-top: 2px;
+    }
+
+    .dropdown-menu-item {
+        border-radius: 8px !important;
+        margin: 2px 0 !important;
+        padding: 10px 12px !important;
+        font-size: 14px !important;
+        color: var(--text-primary) !important;
+        transition: background 0.2s ease !important;
+    }
+
+    .dropdown-menu-item:hover {
+        background-color: var(--bg-hover) !important;
+    }
+
+    /* Icon styling for menu items */
+    .dropdown-menu-item .anticon {
+        font-size: 16px !important;
+        color: var(--text-secondary) !important;
+        margin-right: 8px !important;
+    }
+
+    .logout-item {
+        margin-top: 4px !important;
+    }
+
+    .help-menu-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .help-arrow-icon {
+        font-size: 10px !important;
+        opacity: 0.5;
+        margin-right: 0 !important; /* Reset icon margin for arrows */
+    }
+
+    .ant-dropdown-menu-item-divider {
+        background-color: var(--border-color) !important;
+        opacity: 0.5;
+        margin: 8px 0 !important;
+    }

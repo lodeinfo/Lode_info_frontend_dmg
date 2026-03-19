@@ -260,6 +260,7 @@ function MainLayout() {
                             setSettingsOpen={setSettingsOpen}
                             setTopicModalTrigger={setTopicModalTrigger}
                             user={user}
+                            logout={logout}
                         />
                     </div>
 
