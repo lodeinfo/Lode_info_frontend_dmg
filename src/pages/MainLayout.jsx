@@ -6,7 +6,6 @@ import ChatInterface from "../components/ChatInterface";
 import SettingsModal from "../components/SettingsModal";
 import ProfileModal from "../components/ProfileModal";
 import Sidebar from "../components/sidebar/Sidebar";
-import SearchResults from "../components/SearchResults"; // Added SearchResults import
 
 import { useTheme } from "../contexts/ThemeContext";
 import { useAuth } from "../contexts/AuthContext";
