@@ -37,32 +37,32 @@ export const ThemeProvider = ({ children }) => {
             const link = document.querySelector("link[rel~='icon']");
             if (!link) return;
 
-            if (theme === 'dark') {
-                const img = new Image();
-                img.src = '/LodeInfo.ico';
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = 32;
-                    canvas.height = 32;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, 32, 32);
-                    
-                    const imageData = ctx.getImageData(0, 0, 32, 32);
-                    const data = imageData.data;
-                    for (let i = 0; i < data.length; i += 4) {
-                        // If pixel has some opacity, make it white
-                        if (data[i + 3] > 20) {
-                            data[i] = 255;     // R
-                            data[i + 1] = 255; // G
-                            data[i + 2] = 255; // B
-                        }
+            const img = new Image();
+            img.src = '/LodeInfo.ico';
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = 32;
+                canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, 32, 32);
+                
+                const imageData = ctx.getImageData(0, 0, 32, 32);
+                const data = imageData.data;
+                const r = theme === 'dark' ? 255 : 0;
+                const g = theme === 'dark' ? 255 : 0;
+                const b = theme === 'dark' ? 255 : 0;
+
+                for (let i = 0; i < data.length; i += 4) {
+                    // If pixel has some opacity, force it to theme color
+                    if (data[i + 3] > 20) {
+                        data[i] = r;
+                        data[i + 1] = g;
+                        data[i + 2] = b;
                     }
-                    ctx.putImageData(imageData, 0, 0);
-                    link.href = canvas.toDataURL('image/png');
-                };
-            } else {
-                link.href = '/LodeInfo.ico';
-            }
+                }
+                ctx.putImageData(imageData, 0, 0);
+                link.href = canvas.toDataURL('image/png');
+            };
         };
         updateFavicon();
     }, [theme]);
