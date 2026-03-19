@@ -173,7 +173,7 @@ export const AuthProvider = ({ children }) => {
 
     if (isLoading) {
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#f5f2eb' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: 'var(--bg-primary, #f5f2eb)', transition: 'background-color 0.3s ease' }}>
                 <style>
                     {`
                         @keyframes pulse-loading {
@@ -181,11 +181,15 @@ export const AuthProvider = ({ children }) => {
                             50% { transform: scale(1.05); opacity: 1; }
                             100% { transform: scale(0.95); opacity: 0.7; }
                         }
+                        [data-theme="dark"] .auth-loading-logo {
+                            filter: invert(1) brightness(1.2);
+                        }
                     `}
                 </style>
                 <img 
                     src={logo} 
                     alt="Loading..." 
+                    className="auth-loading-logo"
                     style={{ 
                         width: '64px', 
                         height: '64px', 
