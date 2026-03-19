@@ -3,37 +3,43 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--bg-primary); /* Creamy in light mode */
+  /* Default to Main Light Theme (Creamy) */
+  background-color: var(--bg-primary, #f5f2eb); 
   font-family: 'Outfit', sans-serif;
-  color: var(--text-primary);
   transition: background-color 0.3s ease;
+}
+
+[data-theme="dark"] .login-container {
+  background-color: var(--bg-primary, #1f1f1f);
 }
 
 .login-card {
   width: 100%;
-  max-width: 400px;
-  background-color: var(--bg-input) !important; /* Brighter than background */
-  border: 1px solid var(--border-color) !important;
-  border-radius: 24px !important;
-  padding: 40px 32px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
+  max-width: 420px;
+  /* Default to Sora Light Card style */
+  background-color: var(--bg-input, #ffffff) !important;
+  border: 1px solid var(--border-color, #e0e0e0) !important;
+  border-radius: 28px !important;
+  padding: 48px 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
   transition: all 0.3s ease !important;
+  text-align: center;
 }
 
 [data-theme="dark"] .login-card {
-  background-color: var(--bg-primary) !important;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+  background-color: var(--bg-input, #2f2f2f) !important;
+  border-color: var(--border-color, #404040) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
 }
 
 .login-header {
-  text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .login-logo-container {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 16px;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,35 +51,38 @@
   object-fit: contain;
 }
 
-/* Invert logo in Dark mode for visibility if it's a dark .ico */
+/* Specific Logo filter for dark mode visibility */
 [data-theme="dark"] .login-logo-img {
-    filter: invert(1) brightness(1.5);
+    filter: invert(1) brightness(1.2);
 }
 
 .login-heading {
-  margin-bottom: 8px !important;
-  color: var(--text-primary) !important;
+  margin-bottom: 12px !important;
+  color: var(--text-primary, #1f1f1f) !important;
   font-weight: 600 !important;
-  font-size: 26px !important;
-  letter-spacing: -0.5px;
+  font-size: 28px !important;
+  letter-spacing: -0.8px;
 }
 
 .login-subheading {
-  color: var(--text-secondary) !important;
-  font-size: 14px;
+  color: var(--text-secondary, #444746) !important;
+  font-size: 15px;
+  line-height: 1.5;
   opacity: 0.8;
 }
 
-/* Primary "Continue with Email" Button */
+/* Primary Action Button (Continue with Email) */
 .login-btn-primary {
-  height: 50px !important;
-  background-color: var(--text-primary) !important; /* Black in light, White in dark */
+  height: 52px !important;
+  background-color: var(--text-primary, #1f1f1f) !important; /* Contrasts with card bg */
+  color: var(--bg-input, #ffffff) !important;
   border: none !important;
-  color: var(--bg-primary) !important; /* Creamy in light, Dark in dark */
-  border-radius: 25px !important;
+  border-radius: 26px !important;
   font-weight: 500 !important;
-  font-size: 15px !important;
-  transition: all 0.2s ease !important;
+  font-size: 16px !important;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.2s ease, opacity 0.2s ease !important;
 }
 
 .login-btn-primary:hover {
@@ -81,13 +90,20 @@
   transform: translateY(-1px);
 }
 
-/* Social Buttons (Google/GitHub) */
+/* Social Buttons Row */
+.login-social-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
 .login-social-btn {
-  height: 50px !important;
+  height: 52px !important;
   background-color: transparent !important;
-  border: 1px solid var(--border-color) !important;
-  color: var(--text-primary) !important;
-  border-radius: 25px !important;
+  border: 1px solid var(--border-color, #e0e0e0) !important;
+  color: var(--text-primary, #1f1f1f) !important;
+  border-radius: 26px !important;
   font-weight: 500 !important;
   font-size: 15px !important;
   display: flex !important;
@@ -97,44 +113,37 @@
   transition: all 0.2s ease !important;
 }
 
+/* Ensure icons follow the theme color */
 .login-social-btn .anticon {
-    font-size: 18px;
-    color: var(--text-primary) !important; /* Force icons to follow text color */
+    font-size: 20px;
+    color: var(--text-primary, #1f1f1f) !important;
 }
 
 .login-social-btn:hover {
-  background-color: var(--bg-hover) !important;
-  border-color: var(--border-color) !important;
+  background-color: var(--bg-hover, rgba(0, 0, 0, 0.04)) !important;
+  border-color: var(--border-color, #e0e0e0) !important;
   transform: translateY(-1px);
 }
 
 .login-divider {
-  margin: 28px 0 !important;
-  color: var(--text-tertiary) !important;
-  font-size: 11px !important;
+  margin: 32px 0 !important;
+  color: var(--text-tertiary, #5f6368) !important;
+  font-size: 12px !important;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .login-footer {
-  text-align: center;
-  margin-top: 32px;
+  margin-top: 40px;
 }
 
 .login-footer-text {
-  color: var(--text-tertiary) !important;
-  font-size: 12px !important;
+  color: var(--text-tertiary, #5f6368) !important;
+  font-size: 13px !important;
 }
 
 .login-footer a {
-  color: var(--text-primary);
-  text-decoration: none;
+  color: var(--text-primary, #1f1f1f);
+  text-decoration: underline;
   font-weight: 500;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 1px;
-}
-
-.login-footer a:hover {
-  color: var(--text-secondary);
-  border-color: var(--text-secondary);
 }
