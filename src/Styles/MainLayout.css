@@ -534,7 +534,12 @@
     }
 
     .dropdown-menu-item:hover {
-        background-color: var(--bg-hover) !important;
+        background-color: var(--sidebar-hover-bg) !important;
+        color: var(--sidebar-hover-text) !important;
+    }
+
+    .dropdown-menu-item:hover .anticon {
+        color: var(--sidebar-hover-text) !important;
     }
 
     /* Icon styling for menu items */
