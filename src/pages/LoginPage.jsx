@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
-import { Button, Card, Typography, Space, Divider } from "antd";
+import { Button, Card, Typography, Space, Divider, ConfigProvider, theme as antTheme } from "antd";
 import {
     GoogleOutlined,
     GithubOutlined,
-    ArrowRightOutlined,
 } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import { useTheme } from "../contexts/ThemeContext";
 import logo from "../assets/LodeInfo.ico";
 import "../Styles/Login.css";
 
@@ -32,58 +30,73 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="login-container">
-            <Card className="login-card" variant="borderless">
-                <div className="login-header">
-                    <div className="login-logo-container">
-                        <img src={logo} alt="LodeInfo Logo" className="login-logo-img" />
+        /* Wrap in a local light ConfigProvider to override app-level dark algorithm */
+        <ConfigProvider
+            theme={{
+                algorithm: antTheme.defaultAlgorithm,
+                token: {
+                    colorBgContainer: '#ffffff',
+                    colorBgElevated: '#ffffff',
+                    colorText: '#1f1f1f',
+                    colorTextSecondary: '#444746',
+                    colorBorder: '#e0e0e0',
+                    colorPrimary: '#1a73e8',
+                },
+            }}
+        >
+            <div className="login-container">
+                <Card className="login-card" variant="borderless">
+                    <div className="login-header">
+                        <div className="login-logo-container">
+                            <img src={logo} alt="LodeInfo Logo" className="login-logo-img" />
+                        </div>
+                        <Title level={2} className="login-heading">Welcome back</Title>
+                        <Text className="login-subheading">Sign in to LodeInfo to continue</Text>
                     </div>
-                    <Title level={2} className="login-heading">Welcome back</Title>
-                    <Text className="login-subheading">Sign in to LodeInfo to continue</Text>
-                </div>
 
-                <Space orientation="vertical" size="middle" style={{ width: "100%", marginTop: 24 }}>
-                    <Button
-                        type="primary"
-                        size="large"
-                        block
-                        className="login-btn-primary"
-                        onClick={() => handleLogin()}
-                    >
-                        Continue with Email
-                    </Button>
-
-                    <Divider plain className="login-divider">OR</Divider>
-
-                    <Space orientation="vertical" style={{ width: "100%" }} size="small">
+                    <Space orientation="vertical" size="middle" style={{ width: "100%", marginTop: 24 }}>
                         <Button
-                            block
+                            type="primary"
                             size="large"
-                            icon={<GoogleOutlined />}
-                            className="login-social-btn"
-                            onClick={() => handleLogin("GoogleOAuth")}
-                        >
-                            Continue with Google
-                        </Button>
-                        <Button
                             block
-                            size="large"
-                            icon={<GithubOutlined />}
-                            className="login-social-btn"
-                            onClick={() => handleLogin("GitHubOAuth")}
+                            className="login-btn-primary"
+                            onClick={() => handleLogin()}
                         >
-                            Continue with GitHub
+                            Continue with Email
                         </Button>
+
+                        <Divider plain className="login-divider">OR</Divider>
+
+                        <Space orientation="vertical" style={{ width: "100%" }} size="small">
+                            <Button
+                                block
+                                size="large"
+                                icon={<GoogleOutlined />}
+                                className="login-social-btn"
+                                onClick={() => handleLogin("GoogleOAuth")}
+                            >
+                                Continue with Google
+                            </Button>
+                            <Button
+                                block
+                                size="large"
+                                icon={<GithubOutlined />}
+                                className="login-social-btn"
+                                onClick={() => handleLogin("GitHubOAuth")}
+                            >
+                                Continue with GitHub
+                            </Button>
+                        </Space>
                     </Space>
-                </Space>
 
-                <div className="login-footer">
-                    <Text className="login-footer-text">
-                        By continuing, you agree to our <a href="#">Terms</a> and <a href="#">Privacy</a>
-                    </Text>
-                </div>
-            </Card>
-        </div>
+                    <div className="login-footer">
+                        <Text className="login-footer-text">
+                            By continuing, you agree to our <a href="#">Terms</a> and <a href="#">Privacy</a>
+                        </Text>
+                    </div>
+                </Card>
+            </div>
+        </ConfigProvider>
     );
 };
 
