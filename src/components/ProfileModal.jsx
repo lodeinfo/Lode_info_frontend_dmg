@@ -55,13 +55,15 @@ function ProfileModal({ open, onClose, user }) {
                 </div>
 
                 <div className="profile-avatar-container">
-                    <div className="large-avatar" onClick={triggerFileInput} style={{ cursor: 'pointer' }}>
-                        {profileImage ? (
-                            <img src={profileImage} alt="Profile" className="profile-preview-img" />
-                        ) : (
-                            displayName.charAt(0).toUpperCase() || 'U'
-                        )}
-                        <div className="avatar-upload-icon">
+                    <div className="avatar-wrapper">
+                        <div className="large-avatar" onClick={triggerFileInput}>
+                            {profileImage ? (
+                                <img src={profileImage} alt="Profile" className="profile-preview-img" />
+                            ) : (
+                                displayName.charAt(0).toUpperCase() || 'U'
+                            )}
+                        </div>
+                        <div className="avatar-upload-icon" onClick={triggerFileInput}>
                             <CameraOutlined />
                         </div>
                     </div>
