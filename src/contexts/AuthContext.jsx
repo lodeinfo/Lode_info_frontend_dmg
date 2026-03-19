@@ -143,6 +143,14 @@ export const AuthProvider = ({ children }) => {
         window.location.href = `${API}/auth/logout/`;
     };
 
+    const updateUser = (updatedData) => {
+        setUser(prev => {
+            const newUser = { ...prev, ...updatedData };
+            localStorage.setItem("userDetails", JSON.stringify(newUser));
+            return newUser;
+        });
+    };
+
     if (isLoading) {
         return (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#f0f2f5' }}>
@@ -152,7 +160,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, user, login, logout }}>
+        <AuthContext.Provider value={{ isLoggedIn, user, login, logout, updateUser }}>
             {children}
         </AuthContext.Provider>
     );

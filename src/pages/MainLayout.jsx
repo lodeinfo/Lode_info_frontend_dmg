@@ -232,6 +232,14 @@ function MainLayout() {
                 open={isProfileModalOpen}
                 onClose={() => setIsProfileModalOpen(false)}
                 user={user}
+                onSave={(data) => {
+                    updateUser({
+                        first_name: data.displayName.split(' ')[0] || '',
+                        last_name: data.displayName.split(' ').slice(1).join(' ') || '',
+                        email: data.username,
+                        profile_picture: data.profileImage
+                    });
+                }}
             />
 
             <ConfigProvider

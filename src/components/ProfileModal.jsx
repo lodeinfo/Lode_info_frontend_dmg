@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Modal, Input, Button, message } from 'antd';
-import { CameraOutlined } from '@ant-design/icons';
+import { CameraOutlined, CloseOutlined } from '@ant-design/icons';
 import '../Styles/MainLayout.css';
 
-function ProfileModal({ open, onClose, user }) {
+function ProfileModal({ open, onClose, user, onSave }) {
     const [displayName, setDisplayName] = useState('');
     const [username, setUsername] = useState('');
     const [profileImage, setProfileImage] = useState(null);
@@ -33,9 +33,19 @@ function ProfileModal({ open, onClose, user }) {
     };
 
     const handleSave = () => {
-        // Placeholder for save logic
-        message.success('Profile updated successfully (placeholder)');
+        if (onSave) {
+            onSave({ displayName, username, profileImage });
+        }
+        message.success('Profile updated successfully');
         onClose();
+    };
+
+    const removeImage = (e) => {
+        e.stopPropagation();
+        setProfileImage(null);
+        if (fileInputRef.current) {
+            fileInputRef.current.value = '';
+        }
     };
 
     return (
@@ -63,6 +73,11 @@ function ProfileModal({ open, onClose, user }) {
                                 displayName.charAt(0).toUpperCase() || 'U'
                             )}
                         </div>
+                        {profileImage && (
+                            <div className="avatar-remove-icon" onClick={removeImage}>
+                                <CloseOutlined />
+                            </div>
+                        )}
                         <div className="avatar-upload-icon" onClick={triggerFileInput}>
                             <CameraOutlined />
                         </div>

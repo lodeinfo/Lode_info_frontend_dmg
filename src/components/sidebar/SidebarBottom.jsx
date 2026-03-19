@@ -16,9 +16,13 @@ function SidebarBottom({ collapsed, user, setSettingsOpen, setProfileOpen, logou
             label: (
                 <div className="menu-user-header">
                     <div className="user-avatar mini-avatar">
-                        {user?.first_name
-                            ? `${user.first_name.charAt(0).toUpperCase()}${user.last_name.charAt(0).toUpperCase()}`
-                            : (user?.email ? user.email.charAt(0).toUpperCase() : 'U')}
+                        {user?.profile_picture ? (
+                            <img src={user.profile_picture} alt="Avatar" className="avatar-img" />
+                        ) : (
+                            user?.first_name
+                                ? `${user.first_name.charAt(0).toUpperCase()}${user.last_name.charAt(0).toUpperCase()}`
+                                : (user?.email ? user.email.charAt(0).toUpperCase() : 'U')
+                        )}
                     </div>
                     <div className="user-info-text">
                         <div className="user-info-name">{user?.first_name ? `${user.first_name} ${user.last_name || ''}` : 'User'}</div>
@@ -63,9 +67,13 @@ function SidebarBottom({ collapsed, user, setSettingsOpen, setProfileOpen, logou
                     className={`gemini-menu-item ${collapsed ? 'user-profile-card-collapsed' : 'user-profile-card-expanded'} ${theme === 'dark' ? 'profile-card-bg-dark' : 'profile-card-bg-light'}`}
                 >
                     <div className="user-avatar">
-                        {user?.first_name
-                            ? `${user.first_name.charAt(0).toUpperCase()}${user.last_name.charAt(0).toUpperCase()}`
-                            : (user?.email ? user.email.charAt(0).toUpperCase() : 'U')}
+                        {user?.profile_picture ? (
+                            <img src={user.profile_picture} alt="Avatar" className="avatar-img" />
+                        ) : (
+                            user?.first_name
+                                ? `${user.first_name.charAt(0).toUpperCase()}${user.last_name.charAt(0).toUpperCase()}`
+                                : (user?.email ? user.email.charAt(0).toUpperCase() : 'U')
+                        )}
                     </div>
 
                     {!collapsed && (
