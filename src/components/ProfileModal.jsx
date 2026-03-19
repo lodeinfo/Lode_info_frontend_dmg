@@ -43,7 +43,13 @@ function ProfileModal({ open, onClose, user, onSave }) {
     };
 
     const removeImage = (e) => {
-        e.stopPropagation();
+        // Handle both standard events and Ant Design menu clicks
+        if (e && typeof e.stopPropagation === 'function') {
+            e.stopPropagation();
+        } else if (e && e.domEvent && typeof e.domEvent.stopPropagation === 'function') {
+            e.domEvent.stopPropagation();
+        }
+        
         setProfileImage(null);
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
