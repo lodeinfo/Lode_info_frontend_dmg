@@ -586,7 +586,7 @@
     .large-avatar {
         width: 120px;
         height: 120px;
-        background-color: #da4a19; /* ChatGPT/Sora Orange from screenshot */
+        background-color: #94b1d3; /* Matched current user avatar color */
         color: white;
         border-radius: 50%;
         display: flex;
@@ -603,16 +603,16 @@
         right: 5px;
         width: 32px;
         height: 32px;
-        background: white;
+        background: var(--bg-primary); /* Theme-aware background */
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: #666;
+        color: var(--text-secondary); /* Theme-aware color */
         font-size: 16px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         cursor: pointer;
-        border: 1px solid #eee;
+        border: 1px solid var(--border-color);
     }
 
     .profile-form-group {
@@ -662,9 +662,9 @@
     }
 
     .profile-save-btn {
-        background: #000 !important; /* Premium Black Button */
+        background: var(--text-primary) !important; /* Theme-aware black in light mode, light in dark */
         border: none !important;
-        color: #fff !important;
+        color: var(--bg-primary) !important; /* Text color matches theme background */
         padding: 6px 24px !important;
         height: auto !important;
         font-weight: 500 !important;
