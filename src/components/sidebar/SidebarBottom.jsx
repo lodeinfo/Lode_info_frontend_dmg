@@ -1,16 +1,15 @@
 import React from "react";
-import { Dropdown, Divider } from "antd";
+import { Dropdown } from "antd";
 import { 
-    SettingOutlined, 
     LogoutOutlined, 
-    RocketOutlined, 
-    ControlOutlined, 
-    UserOutlined, 
-    QuestionCircleOutlined,
-    RightOutlined
+    SunOutlined, 
+    MoonOutlined
 } from "@ant-design/icons";
+import { useTheme } from "../../contexts/ThemeContext";
 
-function SidebarBottom({ collapsed, currentTheme, user, setSettingsOpen, logout }) {
+function SidebarBottom({ collapsed, user, logout }) {
+    const { theme, toggleTheme } = useTheme();
+
     const menuItems = [
         {
             key: 'user-info',
@@ -32,42 +31,17 @@ function SidebarBottom({ collapsed, currentTheme, user, setSettingsOpen, logout 
         },
         { type: 'divider' },
         {
-            key: 'upgrade',
-            label: 'Upgrade plan',
-            icon: <RocketOutlined />,
-            className: 'dropdown-menu-item'
-        },
-        {
-            key: 'personalization',
-            label: 'Personalization',
-            icon: <ControlOutlined />,
-            className: 'dropdown-menu-item'
-        },
-        {
-            key: 'profile',
-            label: 'Profile',
-            icon: <UserOutlined />,
-            className: 'dropdown-menu-item'
-        },
-        {
-            key: 'settings',
-            label: 'Settings',
-            icon: <SettingOutlined />,
-            onClick: () => setSettingsOpen(true),
+            key: 'theme',
+            label: (
+                <div className="theme-menu-content">
+                    <span>{theme === 'light' ? 'Dark Mode' : 'Light Mode'}</span>
+                </div>
+            ),
+            icon: theme === 'light' ? <MoonOutlined /> : <SunOutlined />,
+            onClick: toggleTheme,
             className: 'dropdown-menu-item'
         },
         { type: 'divider' },
-        {
-            key: 'help',
-            label: (
-                <div className="help-menu-content">
-                    <span>Help</span>
-                    <RightOutlined className="help-arrow-icon" />
-                </div>
-            ),
-            icon: <QuestionCircleOutlined />,
-            className: 'dropdown-menu-item'
-        },
         {
             key: 'logout',
             label: 'Log out',
@@ -86,7 +60,7 @@ function SidebarBottom({ collapsed, currentTheme, user, setSettingsOpen, logout 
                 overlayClassName="chatgpt-profile-dropdown"
             >
                 <div
-                    className={`gemini-menu-item ${collapsed ? 'user-profile-card-collapsed' : 'user-profile-card-expanded'} ${currentTheme === 'dark' ? 'profile-card-bg-dark' : 'profile-card-bg-light'}`}
+                    className={`gemini-menu-item ${collapsed ? 'user-profile-card-collapsed' : 'user-profile-card-expanded'} ${theme === 'dark' ? 'profile-card-bg-dark' : 'profile-card-bg-light'}`}
                 >
                     <div className="user-avatar">
                         {user?.first_name
