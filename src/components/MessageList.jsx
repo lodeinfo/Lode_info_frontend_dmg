@@ -5,7 +5,7 @@ import AIMessage from "./AIMessage";
 import LoadingMessage from "./LoadingMessage";
 
 const MessageList = forwardRef(
-    ({ conversation, loading, thinkingText, selectedModel, selectedTopic, onEditMessage, onFeedback, onRedo }, ref) => {
+    ({ conversation, loading, thinkingText, selectedModel, selectedTopic, onEditMessage, onUpdateMessage, onFeedback, onRedo }, ref) => {
         return (
             <div className="messages-wrapper">
                 <Flex vertical gap="large">
@@ -22,6 +22,7 @@ const MessageList = forwardRef(
                                     content={msg.content}
                                     index={index}
                                     onEdit={onEditMessage}
+                                    onUpdate={onUpdateMessage}
                                 />
                             ) : (
                                 <AIMessage

@@ -179,6 +179,13 @@ const ChatInterface = ({
         scrollToBottom();
     };
 
+    const handleUpdateMessage = (index, newContent) => {
+        // Truncate conversation to this point and re-submit
+        const newConversation = conversation.slice(0, index);
+        setConversation(newConversation);
+        onAskQuestion(newContent);
+    };
+
     const handleFeedback = async (messageId, feedbackType) => {
         if (!messageId || messageId === "undefined") {
             console.error("❌ Cannot submit feedback: messageId is missing or invalid.", { messageId, feedbackType });
@@ -335,6 +342,7 @@ const ChatInterface = ({
                             selectedModel={selectedModel}
                             selectedTopic={topic}
                             onEditMessage={handleEditMessage}
+                            onUpdateMessage={handleUpdateMessage}
                             onFeedback={handleFeedback}
                             onRedo={handleRedo}
                         />

@@ -38,3 +38,49 @@
     color: var(--text-primary, #ffffff);
     opacity: 1;
 }
+
+/* In-place Editing Styles */
+.editing-mode {
+    width: 100%;
+}
+
+.bubble-editing {
+    width: 100% !important;
+    max-width: 100% !important;
+    background: var(--user-bubble-bg) !important;
+    padding: 12px 16px !important; /* Slightly adjusted for input */
+    border-radius: 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.edit-textarea {
+    background: transparent !important;
+    color: var(--text-primary) !important;
+    font-size: 15px !important;
+    padding: 0 !important;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    width: 100%;
+}
+
+.edit-actions-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.edit-cancel-btn {
+    color: #9ca3af !important;
+}
+
+.edit-send-btn {
+    border-radius: 8px !important;
+}
