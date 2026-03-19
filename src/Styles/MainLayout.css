@@ -566,16 +566,18 @@
     }
 
     /* ── Edit Profile Modal Styles ── */
-    .profile-edit-modal .ant-modal-content {
+    .profile-edit-modal .ant-modal-content,
+    .profile-edit-modal .ant-modal-header {
         background-color: var(--bg-primary) !important;
+        background: var(--bg-primary) !important;
         border-radius: 20px !important;
-        padding: 24px !important;
         color: var(--text-primary) !important;
     }
 
-    .profile-modal-header {
-        margin-bottom: 24px;
-        border-bottom: none !important;
+    .profile-edit-modal .ant-modal-content {
+        padding: 24px !important;
+        border: 1px solid var(--border-color) !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
     }
 
     .profile-modal-title {

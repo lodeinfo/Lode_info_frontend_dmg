@@ -82,6 +82,15 @@ function ProfileModal({ open, onClose, user, onSave }) {
             width={400}
             className="profile-edit-modal"
             closable={false}
+            styles={{
+                content: {
+                    backgroundColor: 'var(--bg-primary)',
+                    color: 'var(--text-primary)',
+                    borderRadius: '20px',
+                    border: '1px solid var(--border-color)',
+                    boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)'
+                }
+            }}
         >
             <div className="profile-modal-content">
                 <div className="profile-modal-header">
