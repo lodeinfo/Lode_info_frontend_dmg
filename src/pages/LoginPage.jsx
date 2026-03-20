@@ -6,7 +6,7 @@ import {
 } from "@ant-design/icons";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
-import logo from "../assets/lodeinfo.icns";
+import logo from "../assets/lodeinfo.ico";
 import "../Styles/Login.css";
 
 const { Title, Text } = Typography;
