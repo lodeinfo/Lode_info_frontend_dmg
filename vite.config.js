@@ -5,6 +5,7 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  assetsInclude: ["**/*.icns"],
   base: "./", // Important for Electron to load assets correctly in production
   resolve: {
     alias: {
