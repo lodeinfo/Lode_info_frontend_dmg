@@ -106,7 +106,7 @@ const TopicModal = ({
             </Modal>
 
             <Modal
-                title={null} // Custom header
+                title={null}
                 open={open}
                 onCancel={() => {
                     onClose();
@@ -116,20 +116,29 @@ const TopicModal = ({
                 footer={null}
                 width={isCompact ? 480 : 640}
                 centered={isCompact}
-                style={{ top: 20 }} // Bring it up a bit
+                style={{ top: 20 }}
+                className="profile-edit-modal"
+                styles={{
+                    content: {
+                        backgroundColor: 'var(--bg-primary)',
+                        color: 'var(--text-primary)',
+                        borderRadius: '20px',
+                        border: '1px solid var(--border-color)',
+                        boxShadow: '0 8px 30px rgba(0, 0, 0, 0.12)'
+                    }
+                }}
             >
-                <div className="modal-notebook-heading" style={{ margin: '0 0 20px' }}>
-                    <div className="modal-notebook-title" style={{ fontSize: 20 }}>Create Topics for</div>
-                    <div className="modal-notebook-subtitle" style={{ fontSize: 20 }}>your documents</div>
+                <div className="profile-modal-header" style={{ marginBottom: 20, textAlign: 'center' }}>
+                    <h2 className="profile-modal-title">Create or Select Topic</h2>
                 </div>
 
-                <div className="modal-section" style={{ marginBottom: 14 }}>
+                <div className="profile-form-group" style={{ marginBottom: 16 }}>
+                    <label className="profile-input-label">Topic Name</label>
                     <Input
-                        placeholder="Topic Name (e.g., Project X)"
+                        placeholder="e.g., Project X"
                         value={newTopicName}
                         onChange={(e) => setNewTopicName(e.target.value)}
-                        className="modal-input-compact"
-                        size="middle"
+                        className="profile-input-field"
                     />
                 </div>
 
@@ -167,13 +176,11 @@ const TopicModal = ({
                                 onClick={onSubmit}
                                 loading={uploading}
                                 disabled={!newTopicName.trim()}
+                                className="profile-save-btn"
                                 style={{
                                     marginLeft: 12,
                                     height: 40,
-                                    padding: '0 24px',
                                     fontSize: 14,
-                                    fontWeight: 500,
-                                    borderRadius: 20
                                 }}
                             >
                                 {selectedTopic ? "Update Source" : "Create Topic"}
@@ -191,15 +198,15 @@ const TopicModal = ({
                     </div>
                 </div>
 
-                <div className="modal-section" style={{ marginBottom: 12 }}>
-                    <div className="modal-section-title" style={{ marginBottom: 4, fontSize: 11 }}>Add Content</div>
+                <div className="profile-form-group" style={{ marginBottom: 12 }}>
+                    <label className="profile-input-label">Add Content</label>
                     <Input.TextArea
                         ref={textAreaRef}
                         placeholder="Paste text here..."
                         value={pastedText}
                         onChange={(e) => setPastedText(e.target.value)}
                         autoSize={{ minRows: 2, maxRows: 4 }}
-                        style={{ borderRadius: 8, padding: '8px 10px', fontSize: 13 }}
+                        className="profile-input-field"
                     />
                 </div>
 
@@ -224,15 +231,14 @@ const TopicModal = ({
                 <Divider className="modal-divider" style={{ margin: '12px 0' }} />
 
                 <div className="modal-section" style={{ marginBottom: 0 }}>
-                    <div className="modal-section-title" style={{ textAlign: 'left', marginBottom: 8, fontSize: 11 }}>Existing Topics</div>
+                    <label className="profile-input-label">Existing Topics</label>
 
                     <Input
                         placeholder="Search library..."
-                        prefix={<SearchOutlined style={{ color: '#9ca3af' }} />}
+                        prefix={<SearchOutlined style={{ color: 'var(--text-secondary)' }} />}
                         onChange={(e) => onTopicSearch(e.target.value)}
-                        className="modal-search-input"
-                        size="small"
-                        style={{ borderRadius: 8, marginBottom: 12 }}
+                        className="profile-input-field"
+                        style={{ marginBottom: 12 }}
                         allowClear
                     />
 
