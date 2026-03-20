@@ -182,6 +182,18 @@ app.whenReady().then(() => {
     createFloatingWindow("manual");
   });
 
+  if (process.platform === "darwin") {
+    globalShortcut.register("Command+L", () => {
+      console.log("✅ Cmd + L pressed");
+      createFloatingWindow("manual");
+    });
+
+    globalShortcut.register("Command+Shift+L", () => {
+      console.log("✅ Cmd + Shift + L pressed");
+      createFloatingWindow("contextual");
+    });
+  }
+
   /* 
      REMOVED: Ctrl+Shift+L global registration.
      Handling via unified local server trigger for Chrome Extension.
