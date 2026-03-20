@@ -40,7 +40,7 @@ export const ThemeProvider = ({ children }) => {
             if (!link) return;
 
             const img = new Image();
-            img.src = '/lodeinfo.icns';
+            img.src = '/LodeInfo.ico';
             img.onload = () => {
                 const canvas = document.createElement('canvas');
                 canvas.width = 32;
