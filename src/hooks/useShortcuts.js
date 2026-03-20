@@ -3,7 +3,9 @@ import { useEffect } from "react";
 const useShortcuts = (handlers) => {
   useEffect(() => {
     const handleKeyDown = (event) => {
-      const isMac = navigator.platform.toUpperCase().includes("MAC");
+      const isMac =
+        navigator.platform.toUpperCase().includes("MAC") ||
+        navigator.userAgent.toUpperCase().includes("MAC");
 
       const { key, ctrlKey, metaKey, altKey } = event;
 
@@ -61,9 +63,17 @@ const useShortcuts = (handlers) => {
 
       /* ---------------- MODEL SWITCH ---------------- */
 
-      // Alt / Option + M
-      if (altKey && key.toLowerCase() === "m") {
+      // Windows → Alt + M
+      if (!isMac && altKey && key.toLowerCase() === "m") {
         console.log("ALT + M DETECTED"); // 👈 ADD THIS
+        event.preventDefault();
+        handlers.onChangeModel();
+        return;
+      }
+
+      // Mac → Option + M
+      if (isMac && altKey && key.toLowerCase() === "m") {
+        console.log("OPTION + M DETECTED");
         event.preventDefault();
         handlers.onChangeModel();
         return;
@@ -71,8 +81,15 @@ const useShortcuts = (handlers) => {
 
       /* ---------------- TOPIC MODAL TOGGLE ---------------- */
 
-      // Alt / Option + T
-      if (altKey && key.toLowerCase() === "t") {
+      // Windows → Alt + T
+      if (!isMac && altKey && key.toLowerCase() === "t") {
+        event.preventDefault();
+        handlers.onTopic();
+        return;
+      }
+
+      // Mac → Option + T
+      if (isMac && altKey && key.toLowerCase() === "t") {
         event.preventDefault();
         handlers.onTopic();
         return;
